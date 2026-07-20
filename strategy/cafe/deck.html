@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="ja" data-lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coffee Shop 事業計画 — 意思決定資料 | Nakaleem Industries</title>
+<style>
+  :root{
+    --bg:#0e0f12; --panel:#16181d; --panel2:#1c1f26; --ink:#f3efe7; --muted:#9aa0ab;
+    --line:#2a2e37; --accent:#c8a25a; --accent2:#7fae8f; --warn:#d98b6a; --good:#7fae8f;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;overflow:hidden}
+  body{
+    background:#08090b; color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  /* .deck が唯一のスクロールコンテナ。スナップで次スライドに吸い付く */
+  .deck{
+    height:100vh; overflow-y:scroll;
+    scroll-snap-type:y mandatory; scroll-behavior:smooth;
+  }
+  .slide{
+    position:relative;
+    width:100vw; height:100vh;
+    background:var(--bg);
+    border-bottom:1px solid var(--line);
+    padding:5.5vh 6vw 8vh;
+    display:flex; flex-direction:column;
+    overflow:hidden;
+    scroll-snap-align:start; scroll-snap-stop:always;
+  }
+
+  /* 言語切替：data-lang に応じて .ja / .en のどちらかを隠す */
+  [data-lang="ja"] .en{display:none !important}
+  [data-lang="en"] .ja{display:none !important}
+  /* 英語表示のときは英字フォントを優先 */
+  [data-lang="en"] body,[data-lang="en"]{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif}
+
+  .kicker{color:var(--accent);font-size:.82rem;letter-spacing:.22em;font-weight:600;text-transform:uppercase;margin-bottom:.9rem}
+  h1{font-size:3.1rem;line-height:1.12;font-weight:700;letter-spacing:-.01em}
+  h2{font-size:2.05rem;line-height:1.18;font-weight:700;margin-bottom:.4rem;letter-spacing:-.01em}
+  .sub{color:var(--muted);font-size:1.02rem;margin-top:1rem;max-width:64ch;line-height:1.6}
+  .lead{color:var(--muted);font-size:1.1rem;margin-bottom:1.4rem;max-width:78ch;line-height:1.55}
+  .grid{display:grid;gap:1rem;margin-top:1.3rem}
+  .g2{grid-template-columns:1fr 1fr}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  .g4{grid-template-columns:repeat(4,1fr)}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:1.2rem 1.3rem}
+  .card h3{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:.6rem}
+  .stat{font-size:2.4rem;font-weight:700;line-height:1;letter-spacing:-.01em}
+  .stat small{font-size:1rem;color:var(--muted);font-weight:500;margin-left:.25rem}
+  .statlabel{color:var(--muted);font-size:.9rem;margin-top:.5rem;line-height:1.45}
+  .accent{color:var(--accent)} .good{color:var(--good)} .warn{color:var(--warn)}
+  table{width:100%;border-collapse:collapse;margin-top:1rem;font-size:.94rem}
+  th,td{text-align:left;padding:.58rem .8rem;border-bottom:1px solid var(--line)}
+  th{color:var(--muted);font-weight:600;font-size:.8rem;letter-spacing:.04em}
+  td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+  tr.total td{border-top:2px solid var(--accent);border-bottom:none;font-weight:700;color:var(--ink)}
+  tr.hi td{background:rgba(200,162,90,.08)}
+  .pill{display:inline-block;padding:.2rem .6rem;border-radius:20px;font-size:.78rem;font-weight:600;border:1px solid var(--line)}
+  .pill.ok{color:var(--good);border-color:rgba(127,174,143,.4);background:rgba(127,174,143,.08)}
+  .pill.no{color:var(--warn);border-color:rgba(217,139,106,.4);background:rgba(217,139,106,.08)}
+  ul.clean{list-style:none;margin-top:.9rem}
+  ul.clean li{padding:.45rem 0 .45rem 1.6rem;position:relative;color:var(--ink);line-height:1.5;border-bottom:1px solid var(--line)}
+  ul.clean li:before{content:"";position:absolute;left:0;top:1.05rem;width:8px;height:8px;border-radius:2px;background:var(--accent)}
+  ul.clean li b{color:var(--ink)} ul.clean li span{color:var(--muted)}
+  .foot{position:absolute;bottom:2.6vh;left:6vw;right:6vw;display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:.76rem;border-top:1px solid var(--line);padding-top:.8rem}
+  .title-slide{justify-content:center}
+  .title-slide .meta{margin-top:2rem;display:flex;gap:2.5rem;color:var(--muted);font-size:.92rem;flex-wrap:wrap}
+  .title-slide .meta div span{display:block;color:var(--accent);font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.25rem}
+  .two-col{display:grid;grid-template-columns:1.05fr .95fr;gap:1.5rem;margin-top:1.2rem}
+  .note{font-size:.8rem;color:var(--muted);margin-top:.9rem;line-height:1.5}
+  .bar-row{display:flex;align-items:center;gap:1rem;margin:.5rem 0}
+  .bar-row .lbl{width:190px;flex-shrink:0;font-size:.9rem;color:var(--muted)}
+  .bar{height:26px;border-radius:6px;background:linear-gradient(90deg,var(--accent),#e0c184);display:flex;align-items:center;padding:0 .6rem;font-size:.8rem;font-weight:700;color:#1a1206;white-space:nowrap}
+  .bar.alt{background:linear-gradient(90deg,#3a4048,#4c545e);color:var(--ink)}
+  .callout{background:linear-gradient(135deg,rgba(200,162,90,.12),rgba(127,174,143,.06));border:1px solid rgba(200,162,90,.3);border-radius:var(--radius);padding:1.1rem 1.3rem;margin-top:1.2rem;line-height:1.55}
+  .callout b{color:var(--accent)}
+  .small{font-size:.88rem}
+  .rank{display:flex;flex-direction:column;gap:.5rem;margin-top:1rem}
+  .rank .r{display:flex;align-items:center;gap:.9rem;padding:.5rem .8rem;border-radius:10px;background:var(--panel);border:1px solid var(--line)}
+  .rank .r .n{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:.85rem;flex-shrink:0;background:var(--line);color:var(--muted)}
+  .rank .r.top .n{background:var(--accent);color:#1a1206}
+  .rank .r .score{margin-left:auto;font-weight:700;font-variant-numeric:tabular-nums}
+  .rank .r.fall{opacity:.6}
+
+  /* ツールバー（PDF＋言語トグル） */
+  .toolbar{position:fixed;top:16px;right:16px;z-index:40;display:flex;gap:8px;align-items:center}
+  .toolbar button{background:var(--panel2);border:1px solid var(--line);color:var(--ink);padding:.5rem .85rem;border-radius:10px;font-size:.85rem;cursor:pointer;transition:.15s}
+  .toolbar button:hover{border-color:var(--accent);color:var(--accent)}
+  .langtoggle{display:flex;background:var(--panel2);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  .langtoggle button{border:none;border-radius:0;padding:.5rem .8rem;font-weight:600}
+  .langtoggle button.on{background:var(--accent);color:#1a1206}
+  .langtoggle button.on:hover{color:#1a1206}
+
+  .progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--accent),#e0c184);z-index:50;transition:width .25s ease}
+  .navdots{position:fixed;top:50%;right:22px;transform:translateY(-50%);z-index:35;display:flex;flex-direction:column;gap:12px}
+  .navdots .d{position:relative;width:11px;height:11px;border-radius:50%;background:var(--line);border:1px solid #3a3f49;cursor:pointer;transition:.2s;padding:0}
+  .navdots .d:hover{background:var(--muted)}
+  .navdots .d.on{background:var(--accent);border-color:var(--accent);transform:scale(1.35);box-shadow:0 0 0 4px rgba(200,162,90,.18)}
+  .navdots .d .lab{position:absolute;right:22px;top:50%;transform:translateY(-50%);white-space:nowrap;background:var(--panel2);border:1px solid var(--line);color:var(--ink);font-size:.76rem;padding:.28rem .6rem;border-radius:7px;opacity:0;pointer-events:none;transition:opacity .15s}
+  .navdots .d:hover .lab,.navdots .d.on .lab{opacity:1}
+  .navdots .d.on .lab{border-color:var(--accent);color:var(--accent)}
+  .pagebadge{position:fixed;left:22px;bottom:22px;z-index:35;background:var(--panel2);border:1px solid var(--line);color:var(--ink);font-size:.82rem;font-variant-numeric:tabular-nums;padding:.4rem .8rem;border-radius:20px;letter-spacing:.05em}
+  .pagebadge b{color:var(--accent)}
+
+  @page{ size:A4 landscape; margin:0; }
+  @media print{
+    html,body{background:#fff;padding:0;margin:0;height:auto;overflow:visible}
+    .deck{display:block;height:auto;overflow:visible;scroll-snap-type:none}
+    .slide{width:100%;height:auto;min-height:0;margin:0;border:none;border-radius:0;padding:9mm 12mm 14mm;
+      page-break-after:always;break-after:page;page-break-inside:avoid;break-inside:avoid;
+      -webkit-print-color-adjust:exact;print-color-adjust:exact;scroll-snap-align:none}
+    .slide:last-child{page-break-after:auto;break-after:auto}
+    .foot{position:absolute}
+    .toolbar,.navdots,.progress,.pagebadge{display:none !important}
+  }
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <div class="langtoggle">
+    <button id="btn-ja" class="on" onclick="setLang('ja')">日本語</button>
+    <button id="btn-en" onclick="setLang('en')">English</button>
+  </div>
+  <button onclick="window.print()"><span class="ja">PDF / 印刷</span><span class="en">PDF / Print</span></button>
+</div>
+
+<div class="deck" id="deck">
+
+  <!-- 1 TITLE -->
+  <section class="slide title-slide" data-title-ja="表紙" data-title-en="Cover">
+    <div class="kicker"><span class="ja">Nakaleem Industries — 事業③ 新規事業計画</span><span class="en">Nakaleem Industries — Business #3 New Venture Plan</span></div>
+    <h1><span class="ja">Coffee Shop 事業計画<br><span class="accent">米田珈琲型・Lahore</span></span><span class="en">Coffee Shop Business Plan<br><span class="accent">Yoneda-Style · Lahore</span></span></h1>
+    <p class="sub"><span class="ja">やや高単価 × 長居 × 客前パンケーキ体験。テーブルサイド タブレット完全オーダーで省人化する、地元・ファミリー向けの品質特化コーヒーショップ。</span><span class="en">Slightly premium × long stays × pancakes cooked in front of guests. A quality-focused coffee shop for local residents and families, kept lean through fully tablet-based table-side ordering.</span></p>
+    <div class="meta">
+      <div><span class="ja"><span style="display:block;color:var(--accent);font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.25rem">作成</span>2026-07-20 / 一郎（Executive）</span><span class="en"><span style="display:block;color:var(--accent);font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.25rem">Prepared</span>2026-07-20 / Ichiro (Executive)</span></div>
+      <div><span class="ja"><span style="display:block;color:var(--accent);font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.25rem">宛先</span>CEO Furva ／ 意思決定用</span><span class="en"><span style="display:block;color:var(--accent);font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.25rem">For</span>CEO Furva / Decision-making</span></div>
+      <div><span class="ja"><span style="display:block;color:var(--accent);font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.25rem">初期投資</span>25.0M PKR（確定）</span><span class="en"><span style="display:block;color:var(--accent);font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.25rem">Investment</span>PKR 25.0M (fixed)</span></div>
+    </div>
+    <div class="foot"><div><span class="ja">Nakaleem Industries · Coffee Shop 事業計画 · 社内意思決定用</span><span class="en">Nakaleem Industries · Coffee Shop Business Plan · Internal decision-making</span></div><div>01 / 12</div></div>
+  </section>
+
+  <!-- 2 結論 -->
+  <section class="slide" data-title-ja="結論サマリー" data-title-en="Executive Summary">
+    <div class="kicker">Executive Summary</div>
+    <h2><span class="ja">結論：GO を推奨。25Mは「1店全張り」ではなく分散する。</span><span class="en">Recommendation: GO. Don't sink all 25M into one store — split it.</span></h2>
+    <p class="lead"><span class="ja">単店の限界ROIは逓減する。25Mを豪華化に沈めず、<b class="accent">良い1号店(16.5M) ＋ 生存バッファ(4.5M) ＋ 拡大リザーブ(4.0M)</b> に置く。倒れない体力を持ち、勝ったら伸ばせる型。</span><span class="en">A single store's marginal ROI diminishes. Rather than over-building, allocate the 25M to <b class="accent">a strong Store #1 (16.5M) + survival buffer (4.5M) + growth reserve (4.0M)</b> — resilient enough not to fall, ready to scale once it wins.</span></p>
+    <div class="grid g4">
+      <div class="card"><h3><span class="ja">月商（基準）</span><span class="en">Monthly Sales (base)</span></h3><div class="stat">3.78<small>M</small></div><div class="statlabel"><span class="ja">36席・客単価1,300 PKR</span><span class="en">36 seats · PKR 1,300/guest</span></div></div>
+      <div class="card"><h3><span class="ja">月次 EBITDA</span><span class="en">Monthly EBITDA</span></h3><div class="stat good">1.21<small>M</small></div><div class="statlabel"><span class="ja">EBITDA率 32%（体験込 34%）</span><span class="en">32% margin (34% w/ experience)</span></div></div>
+      <div class="card"><h3><span class="ja">投資回収</span><span class="en">Payback</span></h3><div class="stat">~14<small><span class="ja">ヶ月</span><span class="en">mo</span></small></div><div class="statlabel"><span class="ja">体験効果込なら約12ヶ月</span><span class="en">~12 mo with experience uplift</span></div></div>
+      <div class="card"><h3><span class="ja">損益分岐</span><span class="en">Break-even</span></h3><div class="stat">49<small><span class="ja">客/日</span><span class="en">/day</span></small></div><div class="statlabel"><span class="ja">基準の約51%＝下振れに強い</span><span class="en">~51% of base — downside-resilient</span></div></div>
+    </div>
+    <div class="callout">
+      <span class="ja"><b>意思決定ポイント：</b> ① 25Mの3分割配分（16.5 / 4.5 / 4.0M）でGOするか　② 出店エリアを DHA Phase5/6 CCA 第一で小箱探索に切り替えるか。<br>この2点が決まれば、内見リストとメニュー20品の具体化に進む。</span>
+      <span class="en"><b>Decisions needed:</b> ① GO on the 3-way split (16.5 / 4.5 / 4.0M)? ② Switch the site search to small units, DHA Phase 5/6 CCA first?<br>Once these are set, we proceed to a viewing list and a 20-item menu.</span>
+    </div>
+    <div class="foot"><div>Executive Summary</div><div>02 / 12</div></div>
+  </section>
+
+  <!-- 3 事業定義 -->
+  <section class="slide" data-title-ja="事業定義" data-title-en="Concept">
+    <div class="kicker"><span class="ja">01 — 事業定義</span><span class="en">01 — Concept</span></div>
+    <h2><span class="ja">「カフェ」でも「レストラン」でもない。<span class="accent">Coffee Shop</span>。</span><span class="en">Neither a "café" nor a restaurant. A <span class="accent">Coffee Shop</span>.</span></h2>
+    <p class="sub"><span class="ja">ベンチマークは米田珈琲（Yoneda Coffee）。Starbucks型との違いは3点。</span><span class="en">Benchmarked on Yoneda Coffee. Three differences vs. the Starbucks model.</span></p>
+    <div class="grid g3">
+      <div class="card"><h3><span class="ja">差別化①</span><span class="en">Difference ①</span></h3><div class="stat" style="font-size:1.4rem"><span class="ja">入店障壁が低い</span><span class="en">Easy to walk in</span></div><div class="statlabel"><span class="ja">「ちょっとコーヒーでも」で気軽に入れる</span><span class="en">"Let's just grab a coffee" — low barrier</span></div></div>
+      <div class="card"><h3><span class="ja">差別化②</span><span class="en">Difference ②</span></h3><div class="stat" style="font-size:1.4rem"><span class="ja">長居できる</span><span class="en">Long stays welcome</span></div><div class="statlabel"><span class="ja">回転で追わない。滞在価値を売る</span><span class="en">We sell dwell-time value, not turnover</span></div></div>
+      <div class="card"><h3><span class="ja">差別化③</span><span class="en">Difference ③</span></h3><div class="stat" style="font-size:1.4rem"><span class="ja">食事もできる</span><span class="en">Real food too</span></div><div class="statlabel"><span class="ja">看板は客前調理のパンケーキ</span><span class="en">Signature: pancakes cooked to order</span></div></div>
+    </div>
+    <div class="two-col">
+      <div>
+        <ul class="clean">
+          <li><span class="ja"><b>ターゲット</b> <span>— 地元住民 / ファミリー層</span></span><span class="en"><b>Target</b> <span>— local residents / families</span></span></li>
+          <li><span class="ja"><b>価格帯</b> <span>— やや高単価・品質重視（Starbucks/Dutch Brosより上）</span></span><span class="en"><b>Pricing</b> <span>— slightly premium, quality-first (above Starbucks/Dutch Bros)</span></span></li>
+          <li><span class="ja"><b>メニュー</b> <span>— 約20品。フルキッチン無・シンプル厨房</span></span><span class="en"><b>Menu</b> <span>— ~20 items. Simple kitchen, no full kitchen</span></span></li>
+          <li><span class="ja"><b>ドリンク基軸</b> <span>— コーヒー（ハンドドリップ/エスプレッソ）</span></span><span class="en"><b>Drink core</b> <span>— coffee (hand-drip / espresso)</span></span></li>
+        </ul>
+      </div>
+      <div>
+        <ul class="clean">
+          <li><span class="ja"><b>空間</b> <span>— 木目×モダン。30〜40席。長居前提で詰め込まない</span></span><span class="en"><b>Space</b> <span>— wood-tone × modern. 30–40 seats, not packed</span></span></li>
+          <li><span class="ja"><b>席構成</b> <span>— 2人席＋4人席ミックス（ファミリー対応）</span></span><span class="en"><b>Seating</b> <span>— mix of 2- & 4-tops (family-friendly)</span></span></li>
+          <li><span class="ja"><b>キッズ</b> <span>— ライトタッチ（プレイエリアは作らない）</span></span><span class="en"><b>Kids</b> <span>— light-touch (no play area)</span></span></li>
+          <li><span class="ja"><b>収益</b> <span>— 通常オーダーベース（非サブスク）</span></span><span class="en"><b>Revenue</b> <span>— standard order-based (no subscription)</span></span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot"><div><span class="ja">事業定義</span><span class="en">Concept</span></div><div>03 / 12</div></div>
+  </section>
+
+  <!-- 4 オペ -->
+  <section class="slide" data-title-ja="オペレーション" data-title-en="Operations">
+    <div class="kicker"><span class="ja">02 — オペレーション上の勝ち筋</span><span class="en">02 — The operational edge</span></div>
+    <h2><span class="ja">テーブルサイド <span class="accent">タブレット完全オーダー</span></span><span class="en">Table-side <span class="accent">fully tablet-based ordering</span></span></h2>
+    <p class="lead"><span class="ja">各卓固定のタブレットで注文完結（スマホ注文は摩擦が大きく否定）。注文フローとサービスフローを分離し、<b class="accent">客単価UP＋省人化</b>を同時に取る。</span><span class="en">Ordering is completed on a tablet fixed at each table (smartphone ordering rejected — too much friction). Separating the order flow from the service flow captures <b class="accent">higher spend and leaner staffing</b> at once.</span></p>
+    <div class="grid g2">
+      <div class="card">
+        <h3><span class="ja">効果① 客単価を押し上げる</span><span class="en">Effect ① Lifts average spend</span></h3>
+        <div class="stat accent">+5〜10<small>%</small></div>
+        <div class="statlabel"><span class="ja">サイド/ドリンク追加のアップセルが自動化。客単価 1,240 → 基準 <b>1,300 PKR</b></span><span class="en">Automated upsell of sides/drinks. Spend 1,240 → base <b>PKR 1,300</b></span></div>
+      </div>
+      <div class="card">
+        <h3><span class="ja">効果② ホールを省人化する</span><span class="en">Effect ② Leaner floor staff</span></h3>
+        <div class="stat good">−3〜4<small><span class="ja">名</span><span class="en">staff</span></small></div>
+        <div class="statlabel"><span class="ja">オーダーテイク工数を削減。ホールは配膳・下げ・補助に純化。人件費 630k → <b>約500k/月</b>（年 −1.6〜1.8M）</span><span class="en">Cuts order-taking labor; floor focuses on running/bussing. Payroll 630k → <b>~500k/mo</b> (−1.6–1.8M/yr)</span></div>
+      </div>
+    </div>
+    <div class="callout">
+      <span class="ja"><b>原則：</b> 削るのは「オーダーテイク工数」だけ。<b class="accent">バリスタ品質は絶対に削らない</b>。米田型の高粗利エンジンはコーヒーであり、そこが差別化の源泉。</span>
+      <span class="en"><b>Principle:</b> We cut only order-taking labor. <b class="accent">Barista quality is never cut.</b> Coffee is the high-margin engine and the source of differentiation in the Yoneda model.</span>
+    </div>
+    <div class="foot"><div><span class="ja">オペレーション</span><span class="en">Operations</span></div><div>04 / 12</div></div>
+  </section>
+
+  <!-- 5 収益 -->
+  <section class="slide" data-title-ja="収益モデル" data-title-en="Revenue Model">
+    <div class="kicker"><span class="ja">03 — 収益モデル</span><span class="en">03 — Revenue Model</span></div>
+    <h2><span class="ja">回転では稼がない。<span class="accent">客単価 × 滞在</span>で取る。</span><span class="en">We don't chase turnover. We win on <span class="accent">spend × dwell time</span>.</span></h2>
+    <p class="sub"><span class="ja">36席・長居前提。客層を2タイプに分け、加重平均で客単価を設計。</span><span class="en">36 seats, long stays. Spend is designed as a weighted average of two guest types.</span></p>
+    <div class="two-col">
+      <div class="card">
+        <h3><span class="ja">客単価の内訳（基準 1,300 PKR）</span><span class="en">Spend breakdown (base PKR 1,300)</span></h3>
+        <table>
+          <tr><th><span class="ja">客タイプ</span><span class="en">Guest type</span></th><th class="num"><span class="ja">構成</span><span class="en">Mix</span></th><th class="num"><span class="ja">単価</span><span class="en">Spend</span></th></tr>
+          <tr><td><span class="ja">ドリンク中心客</span><span class="en">Drink-led guests</span></td><td class="num">45%</td><td class="num">800</td></tr>
+          <tr><td><span class="ja">食事客（パンケーキ/軽食＋ドリンク）</span><span class="en">Food guests (pancakes/light meal + drink)</span></td><td class="num">55%</td><td class="num">1,600</td></tr>
+          <tr class="total"><td><span class="ja">加重平均 ＋タブレットUP</span><span class="en">Weighted avg + tablet uplift</span></td><td class="num">100%</td><td class="num accent">1,300</td></tr>
+        </table>
+        <p class="note"><span class="ja">旧B案(回転型)の 800〜1,000 から +30〜60% の上方修正。長居でも単価が高ければ席あたり収益は成立する。</span><span class="en">A +30–60% revision from the old turnover plan (800–1,000). Even with long stays, high spend makes revenue-per-seat work.</span></p>
+      </div>
+      <div class="card">
+        <h3><span class="ja">1日客数と月商（3シナリオ）</span><span class="en">Daily guests & monthly sales (3 scenarios)</span></h3>
+        <table>
+          <tr><th><span class="ja">シナリオ</span><span class="en">Scenario</span></th><th class="num"><span class="ja">客/月</span><span class="en">Guests/mo</span></th><th class="num"><span class="ja">単価</span><span class="en">Spend</span></th><th class="num"><span class="ja">月商</span><span class="en">Sales</span></th></tr>
+          <tr><td><span class="ja">保守</span><span class="en">Conservative</span></td><td class="num">2,230</td><td class="num">1,150</td><td class="num">2.56M</td></tr>
+          <tr class="hi"><td><span class="ja">基準</span><span class="en">Base</span></td><td class="num">2,910</td><td class="num">1,300</td><td class="num accent">3.78M</td></tr>
+          <tr><td><span class="ja">強気</span><span class="en">Bull</span></td><td class="num">3,590</td><td class="num">1,500</td><td class="num">5.39M</td></tr>
+        </table>
+        <p class="note"><span class="ja">平均滞在1.5h・実効稼働 平日25〜30%/週末40%。平日=朝＋午後の長居、週末=昼〜夕のファミリーが主戦場。原価率は基準28%（ドリンク20/パンケーキ28/軽食35の加重）。</span><span class="en">Avg. stay 1.5h; effective utilization 25–30% weekdays / 40% weekends. Weekdays = morning + afternoon long-stays; weekends = midday–evening families. COGS 28% base (weighted: drinks 20 / pancakes 28 / light food 35).</span></p>
+      </div>
+    </div>
+    <div class="foot"><div><span class="ja">収益モデル</span><span class="en">Revenue Model</span></div><div>05 / 12</div></div>
+  </section>
+
+  <!-- 6 立地 -->
+  <section class="slide" data-title-ja="立地戦略" data-title-en="Location">
+    <div class="kicker"><span class="ja">04 — 立地戦略（重要な発見）</span><span class="en">04 — Location strategy (key finding)</span></div>
+    <h2><span class="ja">幹線一等地は不要。<span class="accent">住宅近接</span>が効く。</span><span class="en">Prime arterial sites aren't needed. <span class="accent">Proximity to homes</span> wins.</span></h2>
+    <p class="lead"><span class="ja">ファミリー/地元・長居・やや高単価で加重を組み替えると序列が逆転。生の人流・視認性は、長居ファミリー業態では価値が低い。</span><span class="en">Reweighting for families/locals, long stays and premium pricing flips the ranking. Raw footfall and visibility matter little for a long-stay family format.</span></p>
+    <div class="two-col">
+      <div>
+        <div class="rank">
+          <div class="r top"><div class="n">1</div><div><span class="ja">DHA Phase5/6 CCA<br><span class="small" style="color:var(--muted)">購買力/ファミリー/駐車/長居文化◎</span></span><span class="en">DHA Phase 5/6 CCA<br><span class="small" style="color:var(--muted)">Spending power / families / parking / long-stay culture ◎</span></span></div><div class="score accent">82</div></div>
+          <div class="r"><div class="n">2</div><div><span class="ja">LDA Avenue Block M<br><span class="small" style="color:var(--muted)">家賃最安・住宅隣接。最大の浮上</span></span><span class="en">LDA Avenue Block M<br><span class="small" style="color:var(--muted)">Cheapest rent, next to homes. Biggest riser</span></span></div><div class="score">78</div></div>
+          <div class="r"><div class="n">3</div><div><span class="ja">Johar Town P1 居抜き<br><span class="small" style="color:var(--muted)">ファミリー母数大・初期圧縮</span></span><span class="en">Johar Town P1 (fit-out included)<br><span class="small" style="color:var(--muted)">Large family base, lower capex</span></span></div><div class="score">75</div></div>
+          <div class="r fall"><div class="n">7</div><div><span class="ja">Gulberg 幹線一等地<br><span class="small" style="color:var(--muted)">旧1位。長居基準では減点・面積過大</span></span><span class="en">Gulberg prime arterial<br><span class="small" style="color:var(--muted)">Was #1. Penalized on long-stay fit; too large</span></span></div><div class="score warn">62</div></div>
+        </div>
+      </div>
+      <div class="card">
+        <h3><span class="ja">面積問題（最大の論点）</span><span class="en">The size issue (the crux)</span></h3>
+        <p style="line-height:1.65;margin-top:.4rem"><span class="ja">必要面積は <b class="accent">120〜160m²（1,300〜1,700 sqft・36席）</b>。<br>既存候補8件は 353〜506m² で <b class="warn">全て過大</b>。</span><span class="en">We need <b class="accent">120–160m² (1,300–1,700 sqft, 36 seats)</b>.<br>All 8 existing candidates are 353–506m² — <b class="warn">all too large</b>.</span></p>
+        <p style="line-height:1.65;margin-top:.8rem"><span class="ja">大箱を借りて空席に賃料を払うのは最悪手。</span><span class="en">Renting a big box and paying rent on empty seats is the worst move.</span></p>
+        <div class="callout" style="margin-top:.9rem">
+          <span class="ja"><b>推奨立地方針：</b> DHA Phase5/6 CCA を第一、LDA Avenue／良質住宅隣接商業を第二に、<b>120〜160m²の小箱を賃料 350〜450k で新規に探す</b>。候補8件は相場ベンチマークとして使う。</span>
+          <span class="en"><b>Recommended:</b> DHA Phase 5/6 CCA first, LDA Avenue / quality residential-adjacent commercial second. <b>Source a fresh 120–160m² small unit at 350–450k rent.</b> Use the 8 candidates as market benchmarks.</span>
+        </div>
+      </div>
+    </div>
+    <div class="foot"><div><span class="ja">立地戦略</span><span class="en">Location</span></div><div>06 / 12</div></div>
+  </section>
+
+  <!-- 7 資金配分 -->
+  <section class="slide" data-title-ja="資金配分" data-title-en="Capital Allocation">
+    <div class="kicker"><span class="ja">05 — 資金配分（初期投資 25M）</span><span class="en">05 — Capital allocation (25M investment)</span></div>
+    <h2><span class="ja">25Mを <span class="accent">3分割</span>する</span><span class="en">Split the 25M <span class="accent">three ways</span></span></h2>
+    <p class="sub"><span class="ja">単店の限界ROIは逓減する。差分を最も価値化するのは「体験内装」と「運転資金」。席数UP（36→48）は長居モデルと矛盾するため却下。</span><span class="en">Single-store marginal ROI diminishes. The surplus is best spent on "experience/interior" and "working capital." Adding seats (36→48) contradicts the long-stay model and is rejected.</span></p>
+    <div style="margin-top:1.5rem">
+      <div class="bar-row"><div class="lbl"><span class="ja">1号店 capex</span><span class="en">Store #1 capex</span></div><div class="bar" style="width:66%"><span class="ja">16.5M — 基準14.0M ＋ 体験プレミアム2.5M（席は増やさない）</span><span class="en">16.5M — base 14.0M + experience premium 2.5M (no extra seats)</span></div></div>
+      <div class="bar-row"><div class="lbl"><span class="ja">運転資金バッファ</span><span class="en">Working-capital buffer</span></div><div class="bar alt" style="width:18%"><span class="ja">4.5M — 生存保険</span><span class="en">4.5M — survival insurance</span></div></div>
+      <div class="bar-row"><div class="lbl"><span class="ja">戦略リザーブ</span><span class="en">Strategic reserve</span></div><div class="bar alt" style="width:16%"><span class="ja">4.0M — 拡大オプション</span><span class="en">4.0M — growth option</span></div></div>
+    </div>
+    <div class="grid g3" style="margin-top:1.4rem">
+      <div class="card"><h3><span class="ja">1号店 16.5M</span><span class="en">Store #1 · 16.5M</span></h3><div class="statlabel"><span class="ja">内装の世界観・客前パンケーキ演出・コーヒー品質・やや良い立地の保証金。<b class="accent">ROIが最も高い体験に集中投下</b></span><span class="en">Interior atmosphere, live pancake theater, coffee quality, deposit for a slightly better site. <b class="accent">Concentrated on the highest-ROI experience.</b></span></div></div>
+      <div class="card"><h3><span class="ja">運転資金 4.5M</span><span class="en">Working capital · 4.5M</span></h3><div class="statlabel"><span class="ja">開業〜黒字化のランプ耐久。<b class="good">最悪ケースでも約11ヶ月生存</b>。基準ランプならほぼ無傷で残る</span><span class="en">Ramp-up runway to break-even. <b class="good">Survives ~11 months even in the worst case.</b> Nearly untouched on a base ramp.</span></div></div>
+      <div class="card"><h3><span class="ja">リザーブ 4.0M</span><span class="en">Reserve · 4.0M</span></h3><div class="statlabel"><span class="ja">工事超過の保険＋<b>12ヶ月で単店黒字を実証できたら2号店の頭金へ転用</b>。できなければ温存しリスク低減</span><span class="en">Overrun insurance + <b>redeploy to Store #2 down-payment if single-store profitability is proven at 12 months.</b> Otherwise held to reduce risk.</span></div></div>
+    </div>
+    <p class="note"><span class="ja">運転資金4.5M・リザーブ4.0Mは「費消する金」ではなく手元資金（B/S）。25Mを全部沈めるわけではない。</span><span class="en">The 4.5M and 4.0M are cash on the balance sheet, not money spent. We are not sinking all 25M.</span></p>
+    <div class="foot"><div><span class="ja">資金配分</span><span class="en">Capital Allocation</span></div><div>07 / 12</div></div>
+  </section>
+
+  <!-- 8 配分比較 -->
+  <section class="slide" data-title-ja="配分の比較" data-title-en="Allocation Options">
+    <div class="kicker"><span class="ja">05 — 資金配分（なぜ分散か）</span><span class="en">05 — Capital allocation (why split)</span></div>
+    <h2><span class="ja">全張りでも全温存でもなく、<span class="accent">バランス型</span></span><span class="en">Not all-in, not all-held — the <span class="accent">balanced option</span></span></h2>
+    <table style="margin-top:1.4rem;font-size:1rem">
+      <tr><th><span class="ja">案</span><span class="en">Option</span></th><th><span class="ja">配分</span><span class="en">Allocation</span></th><th><span class="ja">評価</span><span class="en">Assessment</span></th><th><span class="ja">判定</span><span class="en">Verdict</span></th></tr>
+      <tr><td><span class="ja"><b>A. 全張り（豪華）</b></span><span class="en"><b>A. All-in (lavish)</b></span></td><td><span class="ja">1号店22M＋バッファ3M</span><span class="en">Store 22M + buffer 3M</span></td><td><span class="ja">席・内装は逓減。恒久コスト増。<span class="warn">運転資金が薄く下振れで即死</span></span><span class="en">Seats/interior diminish; higher fixed cost. <span class="warn">Thin cash — dies on a downturn.</span></span></td><td><span class="pill no"><span class="ja">却下</span><span class="en">Rejected</span></span></td></tr>
+      <tr><td><span class="ja"><b>B. 全温存（リーン）</b></span><span class="en"><b>B. All-held (lean)</b></span></td><td><span class="ja">1号店14M＋温存11M</span><span class="en">Store 14M + hold 11M</span></td><td><span class="ja">11Mでは2号店(14M+)は建たず中途半端。<span class="warn">体験価値を削るのは本末転倒</span></span><span class="en">11M can't build Store #2 (14M+) — half-measure. <span class="warn">Cutting the experience defeats the purpose.</span></span></td><td><span class="pill no"><span class="ja">却下</span><span class="en">Rejected</span></span></td></tr>
+      <tr class="hi"><td><span class="ja"><b>C. バランス型</b></span><span class="en"><b>C. Balanced</b></span></td><td>16.5 / 4.5 / 4.0M</td><td><span class="ja">良い1号店＋生存保険＋拡大オプションを同時確保。ROIの高い体験・運転資金に厚く</span><span class="en">Strong store + survival insurance + growth option at once. Weighted to high-ROI experience & cash.</span></td><td><span class="pill ok"><span class="ja">推奨</span><span class="en">Recommended</span></span></td></tr>
+    </table>
+    <div class="callout">
+      <span class="ja">差分+8〜11Mの投じ先ROI順位： <b>体験内装 ＞ 運転資金 ＞ 立地プレミアム(部分) ＞ 2号店温存(部分) ＞ 席数UP（却下）</b>。<br>立地UPは"恒久家賃の罠"があるため、飛び抜けた物件が出た時だけ賃料430〜450kまで許容。上限500k全張りはしない。</span>
+      <span class="en">ROI ranking for the +8–11M surplus: <b>experience/interior > working capital > location premium (partial) > Store #2 hold (partial) > more seats (rejected)</b>.<br>Location upgrades carry a "permanent-rent trap," so we allow rent up to 430–450k only for a standout site — never a full 500k stretch.</span>
+    </div>
+    <div class="foot"><div><span class="ja">資金配分 — 比較</span><span class="en">Allocation Options</span></div><div>08 / 12</div></div>
+  </section>
+
+  <!-- 9 P/L -->
+  <section class="slide" data-title-ja="月次 P/L" data-title-en="Monthly P&L">
+    <div class="kicker"><span class="ja">06 — 月次 P/L（capex 16.5M 反映）</span><span class="en">06 — Monthly P&L (capex 16.5M)</span></div>
+    <h2><span class="ja">基準で <span class="good">EBITDA 1.21M（32%）</span></span><span class="en">Base case: <span class="good">EBITDA 1.21M (32%)</span></span></h2>
+    <div class="two-col">
+      <div class="card">
+        <table>
+          <tr><th><span class="ja">項目（PKR/月）</span><span class="en">Item (PKR/mo)</span></th><th class="num"><span class="ja">基準</span><span class="en">Base</span></th><th class="num"><span class="ja">体験込</span><span class="en">w/ exp.</span></th></tr>
+          <tr><td><span class="ja">売上</span><span class="en">Sales</span></td><td class="num">3,780,000</td><td class="num">3,998,000</td></tr>
+          <tr><td><span class="ja">原価（28%）</span><span class="en">COGS (28%)</span></td><td class="num">−1,058,000</td><td class="num">−1,119,000</td></tr>
+          <tr class="total"><td><span class="ja">粗利</span><span class="en">Gross profit</span></td><td class="num">2,722,000</td><td class="num">2,879,000</td></tr>
+          <tr><td><span class="ja">家賃（立地UP反映）</span><span class="en">Rent (upgraded site)</span></td><td class="num">−430,000</td><td class="num">−430,000</td></tr>
+          <tr><td><span class="ja">人件費</span><span class="en">Payroll</span></td><td class="num">−500,000</td><td class="num">−500,000</td></tr>
+          <tr><td><span class="ja">その他販管費</span><span class="en">Other SG&A</span></td><td class="num">−580,000</td><td class="num">−593,000</td></tr>
+          <tr class="total"><td>EBITDA</td><td class="num good">1,212,000</td><td class="num good">1,356,000</td></tr>
+          <tr><td><span class="ja">減価償却</span><span class="en">Depreciation</span></td><td class="num">−275,000</td><td class="num">−275,000</td></tr>
+          <tr class="total"><td><span class="ja">営業利益</span><span class="en">Operating profit</span></td><td class="num">937,000</td><td class="num">1,081,000</td></tr>
+        </table>
+      </div>
+      <div>
+        <div class="grid" style="gap:1rem">
+          <div class="card"><h3><span class="ja">投資回収（capex 16.5M）</span><span class="en">Payback (capex 16.5M)</span></h3><div class="stat">14<small><span class="ja">ヶ月</span><span class="en">mo</span></small></div><div class="statlabel"><span class="ja">基準。体験効果（単価+75）込なら <b class="good">約12ヶ月</b></span><span class="en">Base. With experience uplift (+75 spend), <b class="good">~12 mo</b></span></div></div>
+          <div class="card"><h3><span class="ja">損益分岐</span><span class="en">Break-even</span></h3><div class="stat">1.925<small>M/mo</small></div><div class="statlabel"><span class="ja">＝ 約49客/日（基準96客/日の <b>約51%</b>）</span><span class="en">= ~49 guests/day (<b>~51%</b> of the 96/day base)</span></div></div>
+          <div class="card"><h3><span class="ja">キャッシュ耐久（バッファ4.5M）</span><span class="en">Cash runway (4.5M buffer)</span></h3><div class="stat good">11<small><span class="ja">ヶ月</span><span class="en">mo</span></small></div><div class="statlabel"><span class="ja">一度も黒字化できない最悪ケースでも生存</span><span class="en">Survives even if it never breaks even</span></div></div>
+        </div>
+      </div>
+    </div>
+    <p class="note"><span class="ja">減価償却 = 16.5M ÷ 5年 = 275,000/月。運転資金・リザーブは費消せず手元に残るため、回収は投下capexのみで測る。</span><span class="en">Depreciation = 16.5M ÷ 5 yrs = 275,000/mo. Working capital and reserve stay as cash, so payback is measured on deployed capex only.</span></p>
+    <div class="foot"><div><span class="ja">月次 P/L</span><span class="en">Monthly P&L</span></div><div>09 / 12</div></div>
+  </section>
+
+  <!-- 10 感度 -->
+  <section class="slide" data-title-ja="感度分析" data-title-en="Sensitivity">
+    <div class="kicker"><span class="ja">07 — 感度分析</span><span class="en">07 — Sensitivity</span></div>
+    <h2><span class="ja">最も効くレバーは <span class="accent">客単価</span> と <span class="accent">平日客数</span></span><span class="en">The biggest levers: <span class="accent">spend</span> and <span class="accent">weekday guests</span></span></h2>
+    <p class="sub"><span class="ja">基準EBITDA 1.21M/月からの変動幅。ここを取れるかが勝敗を分ける。</span><span class="en">Swing from the base EBITDA of 1.21M/mo. Winning here decides the outcome.</span></p>
+    <div class="two-col">
+      <div class="card">
+        <table>
+          <tr><th><span class="ja">変数</span><span class="en">Variable</span></th><th class="num"><span class="ja">変化</span><span class="en">Change</span></th><th class="num"><span class="ja">月次EBITDA影響</span><span class="en">EBITDA impact/mo</span></th></tr>
+          <tr class="hi"><td><span class="ja">客単価</span><span class="en">Spend/guest</span></td><td class="num">±100 PKR</td><td class="num accent">±291,000</td></tr>
+          <tr class="hi"><td><span class="ja">平日客数</span><span class="en">Weekday guests</span></td><td class="num">±10<span class="ja">客/日</span><span class="en">/day</span></td><td class="num accent">±205,000</td></tr>
+          <tr><td><span class="ja">原価率</span><span class="en">COGS ratio</span></td><td class="num">±2pt</td><td class="num">±76,000</td></tr>
+          <tr><td><span class="ja">家賃</span><span class="en">Rent</span></td><td class="num">→500k</td><td class="num warn">−120,000</td></tr>
+          <tr><td><span class="ja">人件費</span><span class="en">Payroll</span></td><td class="num">±1<span class="ja">名</span><span class="en">staff</span></td><td class="num">∓38,000</td></tr>
+        </table>
+      </div>
+      <div class="card">
+        <h3><span class="ja">だから投資は「体験」に厚く</span><span class="en">So we weight investment to "experience"</span></h3>
+        <ul class="clean">
+          <li><span class="ja"><b>客単価が最大レバー</b> <span>→ 米田型の単価設計・客前パンケーキ演出・タブレットのアップセルに投資が直結</span></span><span class="en"><b>Spend is the top lever</b> <span>→ ties directly to Yoneda pricing, live pancake theater, tablet upsell</span></span></li>
+          <li><span class="ja"><b>平日午後の長居需要</b> <span>→ ママ会・在宅ワーカーを取れるかが第二のレバー</span></span><span class="en"><b>Weekday afternoon long-stays</b> <span>→ capturing mom-groups & remote workers is the second lever</span></span></li>
+          <li><span class="ja"><b>家賃は上限を張らない</b> <span>→ 500k全張りで−120k/月。430〜450k止まりが合理的</span></span><span class="en"><b>Don't max out rent</b> <span>→ a full 500k costs −120k/mo; 430–450k is the rational cap</span></span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot"><div><span class="ja">感度分析</span><span class="en">Sensitivity</span></div><div>10 / 12</div></div>
+  </section>
+
+  <!-- 11 リスク -->
+  <section class="slide" data-title-ja="リスクと緩和策" data-title-en="Risks & Mitigations">
+    <div class="kicker"><span class="ja">08 — リスクと緩和策</span><span class="en">08 — Risks & mitigations</span></div>
+    <h2><span class="ja">25Mを1店に集中する下振れをどう抑えるか</span><span class="en">Managing the downside of concentrating 25M in one store</span></h2>
+    <table style="margin-top:1.2rem">
+      <tr><th><span class="ja">リスク</span><span class="en">Risk</span></th><th><span class="ja">内容</span><span class="en">Detail</span></th><th><span class="ja">緩和策</span><span class="en">Mitigation</span></th></tr>
+      <tr><td><span class="ja"><b>立ち上がり遅延</b></span><span class="en"><b>Slow ramp-up</b></span></td><td><span class="ja">認知・リピート定着に想定超の時間</span><span class="en">Awareness & repeat take longer than expected</span></td><td><span class="ja">運転資金4.5M（最悪11ヶ月耐久）＋開業前SNS・近隣先行予約</span><span class="en">4.5M working capital (11-mo runway) + pre-launch social & neighborhood pre-bookings</span></td></tr>
+      <tr><td><span class="ja"><b>季節変動</b></span><span class="en"><b>Seasonality</b></span></td><td><span class="ja">ラマダン・夏季猛暑で月商2〜3割ブレ</span><span class="en">Ramadan & summer heat swing sales 20–30%</span></td><td><span class="ja">損益分岐が基準の約51%＝谷でも赤字化しにくい。Eidのファミリー需要で回収</span><span class="en">Break-even at ~51% of base — hard to go red even in troughs. Eid family demand recovers it</span></td></tr>
+      <tr><td><span class="ja"><b>単一資産集中</b></span><span class="en"><b>Single-asset concentration</b></span></td><td><span class="ja">25M相当が1立地・1業態に依存</span><span class="en">~25M tied to one site & one format</span></td><td><span class="ja">capexは16.5Mに抑え残8.5Mを手元確保。小箱ゆえ撤退損失も限定的</span><span class="en">Cap capex at 16.5M, keep 8.5M in hand. Small unit limits exit losses</span></td></tr>
+      <tr><td><span class="ja"><b>恒久OPEX膨張</b></span><span class="en"><b>Rising fixed OPEX</b></span></td><td><span class="ja">立地UP・席増で家賃/人件が恒久増</span><span class="en">Upgrades/seats permanently raise rent & payroll</span></td><td><span class="ja">席数は増やさない。家賃430〜450k止まり。固定費を意図的に低く保つ</span><span class="en">No extra seats; rent capped at 430–450k. Deliberately low fixed cost</span></td></tr>
+      <tr><td><span class="ja"><b>体験投資の空振り</b></span><span class="en"><b>Experience spend misses</b></span></td><td><span class="ja">+2.5M投下でも単価/リピート上がらず</span><span class="en">+2.5M spent but spend/repeat don't rise</span></td><td><span class="ja">内装だけでなく客前演出・バリスタ品質に配分。Google評価/リピート率で3ヶ月ごと検証</span><span class="en">Fund theater & barista quality, not just interior. Review via Google rating / repeat rate every 3 mo</span></td></tr>
+    </table>
+    <div class="foot"><div><span class="ja">リスクと緩和策</span><span class="en">Risks & Mitigations</span></div><div>11 / 12</div></div>
+  </section>
+
+  <!-- 12 意思決定 -->
+  <section class="slide" data-title-ja="意思決定 & 次アクション" data-title-en="Decisions & Next Steps">
+    <div class="kicker"><span class="ja">09 — 意思決定 & 次アクション</span><span class="en">09 — Decisions & next steps</span></div>
+    <h2><span class="ja">ご判断いただきたい <span class="accent">2点</span></span><span class="en">Two <span class="accent">decisions</span> we need</span></h2>
+    <div class="grid g2" style="margin-top:1.3rem">
+      <div class="card"><h3><span class="ja">決定①</span><span class="en">Decision ①</span></h3><div class="stat" style="font-size:1.3rem"><span class="ja">資金配分 GO?</span><span class="en">Approve allocation?</span></div><div class="statlabel"><span class="ja">25Mを 16.5 / 4.5 / 4.0M の3分割で進めてよいか</span><span class="en">Proceed with the 25M split of 16.5 / 4.5 / 4.0M?</span></div></div>
+      <div class="card"><h3><span class="ja">決定②</span><span class="en">Decision ②</span></h3><div class="stat" style="font-size:1.3rem"><span class="ja">エリア方針 GO?</span><span class="en">Approve site strategy?</span></div><div class="statlabel"><span class="ja">DHA Phase5/6 CCA 第一で、120〜160m²の小箱探索に切り替えるか</span><span class="en">Switch to small-unit search (120–160m²), DHA Phase 5/6 CCA first?</span></div></div>
+    </div>
+    <h3 style="margin-top:1.6rem;color:var(--muted);letter-spacing:.14em;font-size:.8rem"><span class="ja">GO後の次アクション</span><span class="en">Next steps after GO</span></h3>
+    <ul class="clean">
+      <li><span class="ja"><b>小箱の内見リスト作成</b> <span>— DHA CCA/住宅隣接で 120〜160m²・賃料430〜450k帯（一郎）</span></span><span class="en"><b>Build a viewing list of small units</b> <span>— DHA CCA / residential-adjacent, 120–160m², 430–450k rent (Ichiro)</span></span></li>
+      <li><span class="ja"><b>メニュー約20品の具体化</b> <span>— パンケーキ看板＋軽食＋コーヒー基軸＋キッズ枠（一郎）</span></span><span class="en"><b>Detail the ~20-item menu</b> <span>— signature pancakes + light food + coffee core + kids' options (Ichiro)</span></span></li>
+      <li><span class="ja"><b>タブレットオーダーシステム選定</b> <span>— POS/KDS連携・各卓固定・現地ベンダー（奏画）</span></span><span class="en"><b>Select the tablet ordering system</b> <span>— POS/KDS integration, table-fixed, local vendor (Souga)</span></span></li>
+      <li><span class="ja"><b>内装業者の選定・採用計画</b> <span>— 木目×モダン内装、バリスタ/キッチン/ホール（奏画）</span></span><span class="en"><b>Select interior contractor & hiring plan</b> <span>— wood-tone × modern; barista/kitchen/floor (Souga)</span></span></li>
+    </ul>
+    <div class="callout"><span class="ja"><b>推奨：</b> 立地は現地確認とセットになるため、まず一郎に小箱の内見候補リストを組ませ、並行してメニュー骨子を作るのが最効率。</span><span class="en"><b>Recommendation:</b> Since location pairs with on-site visits, have Ichiro build the small-unit viewing list first while drafting the menu outline in parallel — the most efficient path.</span></div>
+    <div class="foot"><div><span class="ja">意思決定 & 次アクション</span><span class="en">Decisions & Next Steps</span></div><div>12 / 12</div></div>
+  </section>
+
+</div>
+
+<div class="progress" id="progress"></div>
+<nav class="navdots" id="navdots"></nav>
+<div class="pagebadge" id="pagebadge"><b>01</b> / 12</div>
+
+<script>
+  const deck=document.getElementById('deck');
+  const slides=[...deck.querySelectorAll('.slide')];
+  const navdots=document.getElementById('navdots');
+  const progress=document.getElementById('progress');
+  const badge=document.getElementById('pagebadge');
+  const total=slides.length;
+  let cur=0, lang='ja';
+
+  // 言語切替
+  function setLang(l){
+    lang=l;
+    document.documentElement.setAttribute('data-lang',l);
+    document.documentElement.setAttribute('lang',l);
+    document.getElementById('btn-ja').classList.toggle('on',l==='ja');
+    document.getElementById('btn-en').classList.toggle('on',l==='en');
+    refreshDotLabels();
+  }
+  function dotTitle(s){ return (lang==='en'? s.dataset.titleEn : s.dataset.titleJa) || ''; }
+  function refreshDotLabels(){
+    dots.forEach((d,i)=>{ d.querySelector('.lab').textContent=String(i+1).padStart(2,'0')+'. '+dotTitle(slides[i]); });
+  }
+
+  // ドット生成
+  slides.forEach((s,i)=>{
+    const b=document.createElement('button');
+    b.className='d'+(i===0?' on':'');
+    b.innerHTML='<span class="lab"></span>';
+    b.addEventListener('click',()=>slides[i].scrollIntoView({behavior:'smooth'}));
+    navdots.appendChild(b);
+  });
+  const dots=[...navdots.querySelectorAll('.d')];
+  refreshDotLabels();
+
+  function setActive(i){
+    if(i===cur)return;
+    cur=i;
+    dots.forEach((d,k)=>d.classList.toggle('on',k===cur));
+    badge.innerHTML='<b>'+String(cur+1).padStart(2,'0')+'</b> / '+total;
+  }
+  function updateProgress(){
+    const max=deck.scrollHeight-deck.clientHeight;
+    progress.style.width=(max>0?(deck.scrollTop/max*100):0)+'%';
+  }
+  if('IntersectionObserver' in window){
+    const io=new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting) setActive(slides.indexOf(e.target)); });
+    },{root:deck,threshold:0.55});
+    slides.forEach(s=>io.observe(s));
+  }
+  deck.addEventListener('scroll',updateProgress,{passive:true});
+  updateProgress();
+
+  window.addEventListener('keydown',e=>{
+    if(['ArrowDown','PageDown',' '].includes(e.key)){slides[Math.min(cur+1,total-1)].scrollIntoView({behavior:'smooth'});e.preventDefault();}
+    if(['ArrowUp','PageUp'].includes(e.key)){slides[Math.max(cur-1,0)].scrollIntoView({behavior:'smooth'});e.preventDefault();}
+    if(e.key==='Home'){slides[0].scrollIntoView({behavior:'smooth'});}
+    if(e.key==='End'){slides[total-1].scrollIntoView({behavior:'smooth'});}
+    // L キーで言語トグル
+    if(e.key==='l'||e.key==='L'){setLang(lang==='ja'?'en':'ja');}
+  });
+</script>
+
+</body>
+</html>

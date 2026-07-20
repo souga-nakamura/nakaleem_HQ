@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ShareLouge — フロアプラン（素地）</title>
+<style>
+  :root {
+    --wall: #2b2b2b;
+    --grid: #e4e4e4;
+    --grid-major: #cfcfcf;
+    --floor: #fafaf7;
+    --ink: #333;
+    --muted: #8a8a8a;
+    --accent: #b8860b;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, "Hiragino Sans", "Yu Gothic", sans-serif;
+    background: #f0efe9;
+    color: var(--ink);
+    padding: 24px;
+  }
+  header {
+    max-width: 1000px;
+    margin: 0 auto 20px;
+  }
+  h1 { font-size: 20px; margin: 0 0 4px; letter-spacing: .04em; }
+  .sub { color: var(--muted); font-size: 13px; }
+  .canvas-wrap {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 24px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.05);
+  }
+  svg { width: 100%; height: auto; display: block; }
+  .legend {
+    max-width: 1000px;
+    margin: 16px auto 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .legend span::before {
+    content: "";
+    display: inline-block;
+    width: 12px; height: 12px;
+    margin-right: 6px;
+    vertical-align: -1px;
+  }
+  .lg-fixed::before { background: #d9d2c5; border: 1px solid #b3a98f; }
+  .lg-struct::before { background: #6b6b6b; }
+  .lg-open::before   { background: var(--floor); border: 1px dashed #bbb; }
+
+  /* SVG text styles */
+  .dim   { fill: var(--accent); font-size: 11px; font-weight: 600; }
+  .label { fill: var(--ink); font-size: 13px; font-weight: 600; }
+  .note  { fill: var(--muted); font-size: 10px; }
+  .area  { fill: #bdbdbd; font-size: 12px; }
+  .compass { fill: var(--muted); font-size: 11px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>ShareLouge — フロアプラン（素地 / Blank Shell）</h1>
+  <div class="sub">DHA Phase 3, Lahore ｜ 約220m²（トイレ含む）｜ 建物骨格のみ・要素未配置 ｜ 寸法は仮置き（間口11m × 奥行20m）</div>
+</header>
+
+<div class="canvas-wrap">
+<!-- スケール: 1m = 40px。 内寸 11m x 20m = 440 x 800px。周囲に余白 60px。壁厚 8px。 -->
+<svg viewBox="0 0 560 920" xmlns="http://www.w3.org/2000/svg">
+
+  <!-- ===== グリッド（1m方眼） ===== -->
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="var(--grid)" stroke-width="1"/>
+    </pattern>
+    <pattern id="gridMajor" width="200" height="200" patternUnits="userSpaceOnUse">
+      <path d="M 200 0 L 0 0 0 200" fill="none" stroke="var(--grid-major)" stroke-width="1.5"/>
+    </pattern>
+  </defs>
+
+  <!-- 床面（内寸 440x800、原点 60,60） -->
+  <rect x="60" y="60" width="440" height="800" fill="var(--floor)"/>
+  <rect x="60" y="60" width="440" height="800" fill="url(#grid)"/>
+  <rect x="60" y="60" width="440" height="800" fill="url(#gridMajor)"/>
+
+  <!-- ===== 外壁 ===== -->
+  <rect x="60" y="60" width="440" height="800" fill="none" stroke="var(--wall)" stroke-width="8"/>
+
+  <!-- ===== 入口（短辺・南側／下辺の中央やや右） ===== -->
+  <!-- 壁を白で切って開口を表現 -->
+  <rect x="330" y="856" width="80" height="8" fill="#fff"/>
+  <!-- ドアスイング -->
+  <path d="M 330 860 A 80 80 0 0 1 330 780" fill="none" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <line x1="330" y1="860" x2="330" y2="780" stroke="var(--muted)" stroke-width="2"/>
+  <text x="370" y="892" text-anchor="middle" class="label">▲ 入口 / ENTRANCE</text>
+
+  <!-- ===== 窓（長辺・東側／右辺に3スパン） ===== -->
+  <g stroke="#7fa8c9" stroke-width="4">
+    <line x1="500" y1="180" x2="500" y2="320"/>
+    <line x1="500" y1="380" x2="500" y2="520"/>
+    <line x1="500" y1="580" x2="500" y2="720"/>
+  </g>
+  <text x="516" y="450" class="note" transform="rotate(90 516 450)" text-anchor="middle">窓 / WINDOWS（採光面）</text>
+
+  <!-- ===== 柱2本（構造・移設不可） ===== -->
+  <!-- おおよそ 1/3・2/3 の位置に配置。中心 (x,y)、一辺 0.5m=20px -->
+  <g>
+    <rect x="230" y="330" width="20" height="20" fill="#6b6b6b"/>
+    <text x="240" y="325" text-anchor="middle" class="note">柱1</text>
+    <rect x="230" y="570" width="20" height="20" fill="#6b6b6b"/>
+    <text x="240" y="565" text-anchor="middle" class="note">柱2</text>
+  </g>
+
+  <!-- ===== 階段（既存・骨格として残置：北西角） ===== -->
+  <g>
+    <rect x="68" y="68" width="120" height="150" fill="#eee" stroke="#9a9a9a" stroke-width="1.5"/>
+    <!-- 段板 -->
+    <g stroke="#c4c4c4" stroke-width="1">
+      <line x1="68" y1="88"  x2="188" y2="88"/>
+      <line x1="68" y1="108" x2="188" y2="108"/>
+      <line x1="68" y1="128" x2="188" y2="128"/>
+      <line x1="68" y1="148" x2="188" y2="148"/>
+      <line x1="68" y1="168" x2="188" y2="168"/>
+      <line x1="68" y1="188" x2="188" y2="188"/>
+    </g>
+    <text x="128" y="200" text-anchor="middle" class="label">階段</text>
+    <text x="128" y="214" text-anchor="middle" class="note">上階へ / STAIRS</text>
+  </g>
+
+  <!-- ===== トイレ（既存・骨格として残置：北東角） ===== -->
+  <g>
+    <rect x="380" y="68" width="112" height="120" fill="#eef2f4" stroke="#9a9a9a" stroke-width="1.5"/>
+    <line x1="380" y1="128" x2="492" y2="128" stroke="#9a9a9a" stroke-width="1"/>
+    <text x="436" y="112" text-anchor="middle" class="label">トイレ</text>
+    <text x="436" y="150" text-anchor="middle" class="note">WC</text>
+    <!-- ドア開口 -->
+    <rect x="380" y="176" width="36" height="8" fill="#fff"/>
+  </g>
+
+  <!-- ===== 面積・寸法表記 ===== -->
+  <!-- 間口（下） -->
+  <line x1="60" y1="40" x2="500" y2="40" stroke="var(--accent)" stroke-width="1"/>
+  <line x1="60" y1="34" x2="60" y2="46" stroke="var(--accent)" stroke-width="1"/>
+  <line x1="500" y1="34" x2="500" y2="46" stroke="var(--accent)" stroke-width="1"/>
+  <text x="280" y="30" text-anchor="middle" class="dim">間口 11.0 m（仮）</text>
+
+  <!-- 奥行（左） -->
+  <line x1="40" y1="60" x2="40" y2="860" stroke="var(--accent)" stroke-width="1"/>
+  <line x1="34" y1="60" x2="46" y2="60" stroke="var(--accent)" stroke-width="1"/>
+  <line x1="34" y1="860" x2="46" y2="860" stroke="var(--accent)" stroke-width="1"/>
+  <text x="30" y="460" text-anchor="middle" class="dim" transform="rotate(-90 30 460)">奥行 20.0 m（仮）</text>
+
+  <!-- 中央の面積表記 -->
+  <text x="330" y="470" text-anchor="middle" class="area">実働オープンフロア</text>
+  <text x="330" y="490" text-anchor="middle" class="area">（ここに座席・ゾーンを配置予定）</text>
+  <text x="330" y="514" text-anchor="middle" class="area">約170〜180 m² / 目標 30席</text>
+
+  <!-- ===== 方位（北を上に） ===== -->
+  <g transform="translate(455,60)">
+    <circle cx="0" cy="0" r="0" />
+    <text x="0" y="-2" text-anchor="middle" class="compass">N</text>
+    <line x1="0" y1="2" x2="0" y2="18" stroke="var(--muted)" stroke-width="1"/>
+    <path d="M 0 -2 L -4 6 L 4 6 Z" fill="var(--muted)"/>
+  </g>
+
+</svg>
+</div>
+
+<div class="legend">
+  <span class="lg-struct">構造・移設不可（外壁・柱・階段・トイレ）</span>
+  <span class="lg-fixed">残す固定エリア（今後配置：カウンター・冷蔵庫・ストレージ）</span>
+  <span class="lg-open">オープンフロア（座席ゾーン未配置）</span>
+</div>
+
+<p style="max-width:1000px;margin:16px auto 0;font-size:12px;color:#8a8a8a;line-height:1.7;">
+  ※ 寸法（間口11m × 奥行20m）は面積220m²からの<b>仮置き</b>です。実測図・写真をいただければ、階段/トイレ/柱/入口/窓の位置と寸法を正確な値に差し替えます。<br>
+  ※ この図は「素地（何も置いていない状態）」です。次工程で 集中ゾーン / ラウンジ / 共有大テーブル / カウンター を配置します。
+</p>
+
+</body>
+</html>
