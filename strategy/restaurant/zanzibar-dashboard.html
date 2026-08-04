@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zanzibar — Business Summary</title>
+<style>
+  :root{
+    --page:      #f7f8fb;
+    --surface:   #ffffff;
+    --surface-2: #f4f6f9;
+    --border:    #e1e5ec;
+
+    --ink:       #10151f;
+    --ink-soft:  #565f6e;
+
+    --blue:      #4f46e5;
+    --blue-deep: #3730a3;
+    --blue-bg:   #eef0fd;
+
+    --bad:       #ae1f1f;
+    --bad-bg:    #fdedec;
+
+    --good:      #147a4c;
+    --good-bg:   #eaf8f0;
+
+    --r: 16px;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{margin:0; width:100%; overflow-x:hidden;}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    background:var(--page); color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+    font-size:18px; line-height:1.55;
+  }
+  .app{max-width:640px; margin:0 auto; padding:0 20px 100px; overflow-x:hidden;}
+
+  header{
+    margin:0 -20px 32px; padding:40px 20px 30px;
+    background:linear-gradient(155deg, var(--blue-deep) 0%, var(--blue) 100%);
+    color:#fff;
+  }
+  .updated{font-size:14px; color:rgba(255,255,255,0.72); font-weight:700; margin-bottom:10px; text-transform:uppercase; letter-spacing:0.04em;}
+  h1{font-size:28px; font-weight:800; letter-spacing:-0.015em; margin:0 0 6px; color:#fff;}
+  .subtitle{font-size:16px; color:rgba(255,255,255,0.82); margin:0; font-weight:500;}
+
+  /* ===== Tabs — pure CSS (radio + label), no JavaScript required ===== */
+  .ctrl{position:absolute; opacity:0; width:0; height:0; pointer-events:none;}
+
+  .tabs{display:flex; gap:8px; margin-bottom:32px; background:var(--surface-2); padding:6px; border-radius:calc(var(--r) + 4px); border:1px solid var(--border); position:sticky; top:12px; z-index:20; box-shadow:0 4px 16px rgba(16,21,31,0.08);}
+  .tab{
+    flex:1; text-align:center; padding:14px 6px; font-size:17px; font-weight:800;
+    color:var(--ink-soft); cursor:pointer; user-select:none; display:block;
+    border-radius:var(--r); background:transparent;
+  }
+  #tab-monthly:checked ~ .tabs label[for="tab-monthly"],
+  #tab-daily:checked ~ .tabs label[for="tab-daily"]{
+    color:#fff; background:linear-gradient(135deg, var(--blue) 0%, var(--blue-deep) 100%);
+    box-shadow:0 4px 14px rgba(79,70,229,0.35);
+  }
+
+  .view{display:none;}
+  #tab-monthly:checked ~ #monthly{display:block;}
+  #tab-daily:checked ~ #daily{display:block;}
+
+  .section{margin-bottom:40px;}
+  .section:last-child{margin-bottom:0;}
+  .section-title{font-size:20px; font-weight:800; color:var(--ink); margin-bottom:4px;}
+  .section-hint{font-size:15px; color:var(--ink-soft); margin-bottom:14px;}
+
+  .card{background:var(--surface); border:1px solid var(--border); border-radius:var(--r); padding:22px; box-shadow:0 2px 10px rgba(16,21,31,0.05);}
+
+  /* big bar metric */
+  .metric{margin-bottom:24px;}
+  .metric:last-child{margin-bottom:0;}
+  .metric-top{display:flex; align-items:baseline; justify-content:space-between; margin-bottom:10px; gap:12px; flex-wrap:wrap;}
+  .metric-name{font-size:18px; font-weight:700; color:var(--ink);}
+  .metric-value{font-size:19px; font-weight:800; font-variant-numeric:tabular-nums;}
+  .metric-track{position:relative; height:14px; background:var(--surface-2); border-radius:999px; border:1px solid var(--border);}
+  .metric-fill{position:absolute; top:0; left:0; bottom:0; border-radius:999px;}
+  .metric-fill.blue{background:linear-gradient(90deg, var(--blue-deep), var(--blue));}
+  .metric-fill.bad{background:linear-gradient(90deg, #8a1717, var(--bad));}
+
+  .note{
+    font-size:16px; color:var(--ink); line-height:1.6; padding:16px 18px;
+    background:var(--surface-2); border:2px solid var(--border); border-radius:var(--r); margin-top:14px;
+  }
+  .note b{font-weight:800;}
+  .note.bad{background:var(--bad-bg); border-color:#f3c9c7; color:var(--bad);}
+  .note.bad b{color:var(--bad);}
+  .note.good{background:var(--good-bg); border-color:#c3e6d1; color:var(--good);}
+  .note.good b{color:var(--good);}
+
+  /* month cards — replaces a wide table so nothing overflows on small screens */
+  .month-card{background:var(--surface); border:1px solid var(--border); border-radius:var(--r); padding:18px; margin-bottom:12px; box-shadow:0 2px 10px rgba(16,21,31,0.05);}
+  .month-card:last-child{margin-bottom:0;}
+  .month-card .mc-top{display:flex; justify-content:space-between; align-items:baseline; margin-bottom:12px; flex-wrap:wrap; gap:6px;}
+  .month-card .mc-name{font-size:18px; font-weight:800; color:var(--ink);}
+  .month-card .mc-tag{display:inline-block; font-size:12px; font-weight:700; color:var(--ink-soft); background:var(--surface-2); border-radius:6px; padding:3px 8px; margin-left:8px; vertical-align:middle;}
+  .month-card .mc-row{display:flex; justify-content:space-between; padding:8px 0; border-top:1px solid var(--border); font-size:16px;}
+  .month-card .mc-row:first-of-type{border-top:none;}
+  .month-card .mc-row .k{color:var(--ink-soft); font-weight:600;}
+  .month-card .mc-row .v{font-weight:800; font-variant-numeric:tabular-nums; text-align:right;}
+  .month-card .mc-note{font-size:14px; color:var(--ink-soft); font-weight:600; text-align:center; padding-top:8px;}
+
+  .list{background:var(--surface); border:1px solid var(--border); border-radius:var(--r); overflow:hidden; box-shadow:0 2px 10px rgba(16,21,31,0.05);}
+  .list > div{display:flex; justify-content:space-between; align-items:baseline; gap:12px; padding:16px 18px; border-bottom:1px solid var(--border);}
+  .list > div:last-child{border-bottom:none;}
+  .list .k{color:var(--ink-soft); font-size:16px; font-weight:600;}
+  .list .v{font-weight:800; font-size:17px; text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap;}
+
+  /* KPI tiles */
+  .kpi-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:20px;}
+  .kpi{background:var(--surface); border:1px solid var(--border); border-radius:var(--r); padding:16px 18px; box-shadow:0 2px 10px rgba(16,21,31,0.05); min-width:0;}
+  .kpi .kpi-label{font-size:13px; font-weight:700; color:var(--ink-soft); text-transform:uppercase; letter-spacing:0.02em; margin-bottom:6px;}
+  .kpi .kpi-value{font-size:21px; font-weight:800; color:var(--ink); font-variant-numeric:tabular-nums; line-height:1.2; word-break:break-word;}
+  .kpi .kpi-sub{font-size:13.5px; font-weight:700; color:var(--ink-soft); margin-top:4px;}
+  .kpi .kpi-sub.down{color:var(--bad);}
+  .kpi .kpi-sub.up{color:var(--good);}
+
+  /* Month sub-tabs (July / August) — also pure CSS */
+  .subtabs{display:flex; gap:8px; margin-bottom:20px;}
+  .subtab{
+    flex:1; text-align:center; padding:12px 6px; font-size:16px; font-weight:800;
+    color:var(--blue-deep); cursor:pointer; user-select:none; display:block;
+    border:2px solid var(--blue-bg); border-radius:var(--r); background:var(--blue-bg);
+  }
+  #month-jul:checked ~ .subtabs label[for="month-jul"],
+  #month-aug:checked ~ .subtabs label[for="month-aug"]{
+    color:#fff; background:linear-gradient(135deg, var(--blue) 0%, var(--blue-deep) 100%); border-color:var(--blue-deep);
+  }
+  .subview{display:none;}
+  #month-jul:checked ~ #jul-panel{display:block;}
+  #month-aug:checked ~ #aug-panel{display:block;}
+
+  /* Daily jump grid — plain anchor links, scrolls to the day, no JS needed */
+  .jump-card{background:var(--surface); border:1px solid var(--border); border-radius:var(--r); padding:16px 16px 18px; box-shadow:0 2px 10px rgba(16,21,31,0.05); margin-bottom:20px;}
+  .jump-caption{font-size:14px; color:var(--ink-soft); font-weight:700; margin-bottom:12px;}
+  .jump-grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(50px, 1fr)); gap:8px;}
+  .jump-day{
+    height:50px; border-radius:12px; border:2px solid var(--border); background:var(--surface-2);
+    display:flex; align-items:center; justify-content:center;
+    font-size:17px; font-weight:800; color:var(--ink-soft);
+    text-decoration:none;
+  }
+  .jump-day.logged.status-blue{background:var(--blue-bg); border-color:#c7d7f7; color:var(--blue-deep);}
+  .jump-day.logged.status-bad{background:var(--bad-bg); border-color:#f3c9c7; color:var(--bad);}
+  .jump-day.current{border-color:var(--blue); box-shadow:0 0 0 3px rgba(79,70,229,0.18); color:#fff; background:linear-gradient(135deg, var(--blue) 0%, var(--blue-deep) 100%);}
+  .jump-legend{display:flex; gap:18px; flex-wrap:wrap; margin-top:14px; font-size:13px; color:var(--ink-soft); font-weight:700;}
+  .jump-legend span{display:inline-flex; align-items:center; gap:6px;}
+  .dot{width:10px; height:10px; border-radius:50%; display:inline-block; flex-shrink:0;}
+  .dot.status-blue{background:var(--blue);}
+  .dot.status-bad{background:var(--bad);}
+  .dot.future{background:#d6dae2;}
+
+  /* Daily entries — native <details>/<summary>, works with no JavaScript at all.
+     Jump-grid links (href="#day-aug1") land on the element via normal anchor scrolling;
+     the :target rules below force that day's content open even without the `open` attribute. */
+  details.day{background:var(--surface); border:1px solid var(--border); border-radius:var(--r); margin-bottom:14px; overflow:hidden; box-shadow:0 2px 10px rgba(16,21,31,0.05); scroll-margin-top:140px;}
+  details.day[open], details.day:target{border-color:var(--blue); box-shadow:0 6px 20px rgba(79,70,229,0.14);}
+  details.day:target .day-body-inner{display:block !important;}
+  summary.day-head{display:flex; align-items:center; gap:14px; padding:18px 18px; cursor:pointer; min-height:60px; list-style:none;}
+  summary.day-head::-webkit-details-marker{display:none;}
+  summary.day-head::marker{content:"";}
+  .status-dot{width:11px; height:11px; border-radius:50%; flex-shrink:0;}
+  .status-dot.status-blue{background:var(--blue);}
+  .status-dot.status-bad{background:var(--bad);}
+  .chevron{width:20px; height:20px; color:var(--ink-soft); flex-shrink:0; transition:transform .2s ease;}
+  details.day[open] summary.day-head .chevron, details.day:target summary.day-head .chevron{transform:rotate(180deg); color:var(--blue);}
+  .day-main{flex:1; min-width:0;}
+  .day-line1{display:flex; align-items:baseline; justify-content:space-between; margin-bottom:10px; flex-wrap:wrap; gap:6px;}
+  .day-date{font-weight:800; font-size:19px; color:var(--ink);}
+  .day-date .latest-tag{display:inline-block; font-size:11px; font-weight:800; color:#fff; background:var(--blue); border-radius:6px; padding:2px 7px; margin-left:8px; text-transform:uppercase; letter-spacing:0.03em; vertical-align:middle;}
+  .day-sales{font-weight:800; font-size:22px; font-variant-numeric:tabular-nums; color:var(--blue-deep);}
+  .day-bar{position:relative; height:10px; background:var(--surface-2); border-radius:999px; border:1px solid var(--border);}
+  .day-bar-fill{position:absolute; inset:0 auto 0 0; height:100%; border-radius:999px; background:linear-gradient(90deg, var(--blue-deep), var(--blue));}
+  .day-bar-fill.low{background:linear-gradient(90deg, #8a1717, var(--bad));}
+  .day-meta{margin-top:9px; font-size:15px; color:var(--ink-soft); font-weight:700;}
+  .day-meta .down{color:var(--bad);}
+  .day-meta .up{color:var(--good);}
+
+  .day-body-inner{padding:0 18px 22px; border-top:2px solid var(--border); margin-top:2px;}
+  .subhead{font-size:14px; font-weight:800; color:var(--ink-soft); text-transform:uppercase; letter-spacing:0.02em; padding-top:20px; padding-bottom:8px;}
+  .row{display:flex; justify-content:space-between; align-items:baseline; padding:11px 0; font-size:17px; border-bottom:1px solid var(--border); gap:16px;}
+  .row.total{border-bottom:none; padding-top:14px; font-weight:800;}
+  .row .k{color:var(--ink-soft); flex-shrink:0; font-weight:600;}
+  .row .v{text-align:right; font-weight:800; color:var(--ink); font-variant-numeric:tabular-nums;}
+  .expense-item{display:flex; justify-content:space-between; padding:9px 0; font-size:16px; color:var(--ink); border-bottom:1px solid var(--border); font-weight:500; gap:12px;}
+  .expense-item:last-child{border-bottom:none;}
+  .expense-item span:first-child{flex:1; min-width:0;}
+  .expense-item .amt{font-weight:700; font-variant-numeric:tabular-nums; color:var(--ink); flex-shrink:0;}
+  .expense-item.big{color:var(--bad); font-weight:700;}
+  .expense-item.big .amt{color:var(--bad);}
+
+  .footer{text-align:center; color:var(--ink-soft); font-size:13px; margin-top:44px; line-height:1.6; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; opacity:0.7;}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <input type="radio" name="maintab" id="tab-monthly" class="ctrl" checked>
+  <input type="radio" name="maintab" id="tab-daily" class="ctrl">
+
+  <header>
+    <div class="updated">Updated August 4, 2026</div>
+    <h1>Zanzibar — Business Summary</h1>
+    <p class="subtitle">Multan · records kept for the family</p>
+  </header>
+
+  <div class="tabs">
+    <label class="tab" for="tab-monthly">Monthly</label>
+    <label class="tab" for="tab-daily">Daily</label>
+  </div>
+
+  <!-- ============ MONTHLY ============ -->
+  <div class="view" id="monthly">
+
+    <div class="section">
+      <div class="section-title">Monthly Summary</div>
+
+      <div class="month-card">
+        <div class="mc-top">
+          <span class="mc-name">July 2026 <span class="mc-tag">before handover</span></span>
+        </div>
+        <div class="mc-row"><span class="k">Sales</span><span class="v">15,278,417</span></div>
+        <div class="mc-row"><span class="k">Net Profit</span><span class="v">1,959,633</span></div>
+        <div class="mc-row"><span class="k">Margin</span><span class="v">13%</span></div>
+      </div>
+
+      <div class="month-card">
+        <div class="mc-top">
+          <span class="mc-name">August 2026 <span class="mc-tag">in progress</span></span>
+        </div>
+        <div class="mc-row"><span class="k">Sales so far</span><span class="v">1,219,993</span></div>
+        <div class="mc-note">3 days logged so far — too early for profit/margin, see below</div>
+      </div>
+    </div>
+
+    <input type="radio" name="monthsub" id="month-jul" class="ctrl" checked>
+    <input type="radio" name="monthsub" id="month-aug" class="ctrl">
+    <div class="subtabs">
+      <label class="subtab" for="month-jul">July</label>
+      <label class="subtab" for="month-aug">August</label>
+    </div>
+
+    <!-- ===== JULY PANEL ===== -->
+    <div class="subview" id="jul-panel">
+
+      <div class="section">
+        <div class="section-title">July at a glance</div>
+        <div class="kpi-grid">
+          <div class="kpi">
+            <div class="kpi-label">Total Sales</div>
+            <div class="kpi-value">15,278,417</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-label">Net Profit</div>
+            <div class="kpi-value">1,959,633</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-label">Net Margin</div>
+            <div class="kpi-value">13%</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-label">Avg. Daily Sales</div>
+            <div class="kpi-value">492,852</div>
+            <div class="kpi-sub">over 31 days</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">July — where the money went</div>
+        <div class="section-hint">as a share of total sales</div>
+        <div class="card">
+          <div class="metric">
+            <div class="metric-top">
+              <span class="metric-name">Cost of Goods</span>
+              <span class="metric-value">6,551,171 (43%)</span>
+            </div>
+            <div class="metric-track"><div class="metric-fill blue" style="width:43%;"></div></div>
+          </div>
+          <div class="metric">
+            <div class="metric-top">
+              <span class="metric-name">Operating Expenses</span>
+              <span class="metric-value">6,427,683 (42%)</span>
+            </div>
+            <div class="metric-track"><div class="metric-fill blue" style="width:42%;"></div></div>
+          </div>
+          <div class="metric">
+            <div class="metric-top">
+              <span class="metric-name">Net Profit</span>
+              <span class="metric-value">1,959,633 (13%)</span>
+            </div>
+            <div class="metric-track"><div class="metric-fill bad" style="width:13%;"></div></div>
+          </div>
+        </div>
+        <div class="note">
+          Cost of Goods and Operating Expenses together take <b>85%</b> of every rupee sold. Profit is thin because both major cost lines are high at once, not because of one weak spot.
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">July sales breakdown</div>
+        <div class="list">
+          <div><span class="k">Regular / Party Sale</span><span class="v">4,755,181</span></div>
+          <div><span class="k">Credit Sale</span><span class="v">10,420,549</span></div>
+          <div><span class="k">Staff KOT Sale</span><span class="v">102,687</span></div>
+        </div>
+        <div class="note bad">
+          <b>68% of July's sales were Credit Sale</b> (10.42M of 15.28M) — money earned on paper, not yet collected. That matches the Accounts Receivable of 7.68M below: a large part of July's profit is still owed to the business.
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Balance snapshot</div>
+        <div class="section-hint">as of end of July</div>
+        <div class="list">
+          <div><span class="k">Cash at Bank</span><span class="v">10,116,234</span></div>
+          <div><span class="k">Cash in Hand</span><span class="v">494,449</span></div>
+          <div><span class="k">Accounts Receivable</span><span class="v">7,684,152</span></div>
+          <div><span class="k">Accounts Payable</span><span class="v">5,250,341</span></div>
+        </div>
+        <div class="note good">
+          Owed to the business (7.68M) is larger than what the business owes others (5.25M) — a healthy sign, as long as that money is actually collected.
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ===== AUGUST PANEL ===== -->
+    <div class="subview" id="aug-panel">
+
+      <div class="section">
+        <div class="section-title">August so far</div>
+        <div class="section-hint">3 of 31 days logged — early days, not a full month yet</div>
+        <div class="kpi-grid">
+          <div class="kpi">
+            <div class="kpi-label">Sales so far</div>
+            <div class="kpi-value">1,219,993</div>
+            <div class="kpi-sub">Aug 1–3</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-label">Expenses so far</div>
+            <div class="kpi-value">802,575</div>
+            <div class="kpi-sub">Aug 1–3</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-label">Avg. Daily Sales</div>
+            <div class="kpi-value">406,664</div>
+            <div class="kpi-sub down">−17.5% vs July avg</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-label">Cash Balance</div>
+            <div class="kpi-value">144,009</div>
+            <div class="kpi-sub">as of Aug 3</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">If this pace continued for the full month</div>
+        <div class="card">
+          <div class="metric">
+            <div class="metric-top">
+              <span class="metric-name">Projected Sales (31 days)</span>
+              <span class="metric-value">≈ 12,606,584</span>
+            </div>
+            <div class="metric-track"><div class="metric-fill bad" style="width:82.5%;"></div></div>
+          </div>
+          <div class="metric">
+            <div class="metric-top">
+              <span class="metric-name">vs. July Actual</span>
+              <span class="metric-value">−17.5%</span>
+            </div>
+            <div class="metric-track"><div class="metric-fill blue" style="width:100%;"></div></div>
+          </div>
+        </div>
+        <div class="note bad">
+          This is simple math — 3 days' average stretched across the month — <b>not a forecast</b>. It exists only to show what "doing nothing differently" would look like. Sales fell each of the three days logged, which is the main reason this projection runs below July. Treat it as a starting line, not a prediction.
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-hint">Day-by-day detail, including sales channels, expenses, receipts, and cash — see the Daily tab.</div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ============ DAILY ============ -->
+  <div class="view" id="daily">
+
+    <div class="section">
+      <div class="section-title">Daily Log — August 2026</div>
+      <div class="section-hint">Tap a number to jump to that day, then tap the day to open it</div>
+
+      <div class="jump-card">
+        <div class="jump-caption">3 of 31 days logged so far</div>
+        <div class="jump-grid" id="jumpGrid">
+          <a href="#day-aug1" class="jump-day logged status-blue">1</a>
+          <a href="#day-aug2" class="jump-day logged status-bad">2</a>
+          <a href="#day-aug3" class="jump-day logged status-bad current">3</a>
+          <!-- remaining days of August not yet logged -->
+        </div>
+        <div class="jump-legend">
+          <span><span class="dot status-blue"></span>at/above average</span>
+          <span><span class="dot status-bad"></span>below average</span>
+          <span><span class="dot future"></span>not logged yet</span>
+        </div>
+      </div>
+
+      <!-- Aug 1 -->
+      <details class="day" id="day-aug1">
+        <summary class="day-head">
+          <span class="status-dot status-blue"></span>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          <div class="day-main">
+            <div class="day-line1">
+              <span class="day-date">Aug 1</span>
+              <span class="day-sales">468,748</span>
+            </div>
+            <div class="day-bar"><div class="day-bar-fill" style="width:95.1%;"></div></div>
+            <div class="day-meta"><span class="down">−4.9% vs July average</span></div>
+          </div>
+        </summary>
+        <div class="day-body-inner">
+
+          <div class="subhead">Sales by channel</div>
+          <div class="expense-item"><span>Dine In</span><span class="amt">416,016</span></div>
+          <div class="expense-item"><span>Takeaway</span><span class="amt">42,316</span></div>
+          <div class="expense-item"><span>Delivery</span><span class="amt">7,806</span></div>
+          <div class="expense-item"><span>Staff KOT</span><span class="amt">2,610</span></div>
+          <div class="expense-item"><span>Party Sale</span><span class="amt">0</span></div>
+          <div class="row total"><span class="k">Total Sales</span><span class="v">468,748</span></div>
+
+          <div class="subhead">Expenses</div>
+          <div class="expense-item"><span>Karak Chai &amp; MilkPak Cream</span><span class="amt">126,880</span></div>
+          <div class="expense-item"><span>Driver Salary (Mian G MD SB)</span><span class="amt">35,000</span></div>
+          <div class="expense-item"><span>Hi-Jean Tissue</span><span class="amt">18,840</span></div>
+          <div class="expense-item"><span>Service Charges</span><span class="amt">18,342</span></div>
+          <div class="expense-item"><span>Misc. Expense</span><span class="amt">18,877</span></div>
+          <div class="expense-item"><span>Chicken</span><span class="amt">7,099</span></div>
+          <div class="expense-item"><span>Software Monthly IT Fee</span><span class="amt">6,430</span></div>
+          <div class="expense-item"><span>Milk</span><span class="amt">5,930</span></div>
+          <div class="expense-item"><span>Fresh Cream</span><span class="amt">5,000</span></div>
+          <div class="expense-item"><span>PC Zone (Projector Rent)</span><span class="amt">1,500</span></div>
+          <div class="expense-item"><span>Tip From T#30 INV#22</span><span class="amt">1,191</span></div>
+          <div class="expense-item"><span>Sales Discount</span><span class="amt">474</span></div>
+          <div class="row total"><span class="k">Total Expenses</span><span class="v">245,563</span></div>
+
+          <div class="subhead">Receipts</div>
+          <div class="expense-item"><span>Cash Rec. From Cash In Hand</span><span class="amt">200,000</span></div>
+          <div class="expense-item"><span>Crockery Share</span><span class="amt">2,650</span></div>
+          <div class="row total"><span class="k">Total Receipts</span><span class="v">202,650</span></div>
+
+          <div class="subhead">Pending</div>
+          <div class="expense-item"><span>Farhan GRO (Staff KOT)</span><span class="amt">1,750</span></div>
+          <div class="expense-item"><span>Jameel Abbas Sb INV#39</span><span class="amt">1,872</span></div>
+          <div class="expense-item"><span>Jameel Abbas Sb INV#52</span><span class="amt">288</span></div>
+          <div class="expense-item"><span>Jameel Abbas Sb INV#51</span><span class="amt">115</span></div>
+          <div class="row total"><span class="k">Total Pending</span><span class="v">4,025</span></div>
+
+          <div class="subhead">Credit Card</div>
+          <div class="expense-item"><span>Credit Card</span><span class="amt">237,028</span></div>
+          <div class="expense-item"><span>Credit Card</span><span class="amt">165,257</span></div>
+          <div class="expense-item"><span>Online Bank AlFalah INV#06</span><span class="amt">3,873</span></div>
+          <div class="row total"><span class="k">Total Credit Card</span><span class="v">421,404</span></div>
+
+          <div class="subhead">Cash</div>
+          <div class="row"><span class="k">Cash in Hand (today)</span><span class="v">406</span></div>
+          <div class="row"><span class="k">Cash balance (running total)</span><span class="v">294,905</span></div>
+
+          <div class="note">Expenses (245,563) were high mainly because of one supplier bill — Karak Chai &amp; MilkPak Cream, 126,880 — more than half of the day's spend. Worth checking if that was a bulk restock rather than a daily cost.</div>
+        </div>
+      </details>
+
+      <!-- Aug 2 -->
+      <details class="day" id="day-aug2">
+        <summary class="day-head">
+          <span class="status-dot status-bad"></span>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          <div class="day-main">
+            <div class="day-line1">
+              <span class="day-date">Aug 2</span>
+              <span class="day-sales">420,193</span>
+            </div>
+            <div class="day-bar"><div class="day-bar-fill low" style="width:85.3%;"></div></div>
+            <div class="day-meta">
+              <span class="down">−10.4% vs Aug 1</span> &nbsp;·&nbsp;
+              <span class="down">−14.7% vs July average</span>
+            </div>
+          </div>
+        </summary>
+        <div class="day-body-inner">
+
+          <div class="subhead">Sales by channel</div>
+          <div class="expense-item"><span>Dine In</span><span class="amt">381,197</span></div>
+          <div class="expense-item"><span>Delivery</span><span class="amt">19,257</span></div>
+          <div class="expense-item"><span>Takeaway</span><span class="amt">13,177</span></div>
+          <div class="expense-item"><span>Staff KOT</span><span class="amt">4,590</span></div>
+          <div class="expense-item"><span>KOT Sale</span><span class="amt">1,972</span></div>
+          <div class="expense-item"><span>Party Sale</span><span class="amt">0</span></div>
+          <div class="row total"><span class="k">Total Sales</span><span class="v">420,193</span></div>
+
+          <div class="subhead">Expenses</div>
+          <div class="expense-item"><span>Service Charges</span><span class="amt">16,801</span></div>
+          <div class="expense-item"><span>Electric Material</span><span class="amt">14,550</span></div>
+          <div class="expense-item"><span>Milk</span><span class="amt">8,742</span></div>
+          <div class="expense-item"><span>Adil Electrician (advance)</span><span class="amt">10,000</span></div>
+          <div class="expense-item"><span>Coal</span><span class="amt">5,300</span></div>
+          <div class="row total"><span class="k">Total Expenses</span><span class="v">55,393</span></div>
+
+          <div class="subhead">Receipts</div>
+          <div class="expense-item"><span>Crockery Share</span><span class="amt">1,000</span></div>
+          <div class="row total"><span class="k">Total Receipts</span><span class="v">1,000</span></div>
+
+          <div class="subhead">Pending</div>
+          <div class="expense-item"><span>MS Mutton / KOT#394</span><span class="amt">1,972</span></div>
+          <div class="row total"><span class="k">Total Pending</span><span class="v">1,972</span></div>
+
+          <div class="subhead">Credit Card</div>
+          <div class="expense-item"><span>Credit Card</span><span class="amt">217,204</span></div>
+          <div class="expense-item"><span>Credit Card</span><span class="amt">145,934</span></div>
+          <div class="row total"><span class="k">Total Credit Card</span><span class="v">363,138</span></div>
+
+          <div class="subhead">Cash</div>
+          <div class="row"><span class="k">Cash in Hand (today)</span><span class="v">690</span></div>
+          <div class="row"><span class="k">Cash balance (running total)</span><span class="v">295,595</span></div>
+
+          <div class="note">Expenses (55,393) were back to a normal level, with no large single bill. Sales still fell short — this gap looks like a sales issue, not a cost issue.</div>
+        </div>
+      </details>
+
+      <!-- Aug 3 -->
+      <details class="day" id="day-aug3" open>
+        <summary class="day-head">
+          <span class="status-dot status-bad"></span>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          <div class="day-main">
+            <div class="day-line1">
+              <span class="day-date">Aug 3<span class="latest-tag">Latest</span></span>
+              <span class="day-sales">331,052</span>
+            </div>
+            <div class="day-bar"><div class="day-bar-fill low" style="width:67.2%;"></div></div>
+            <div class="day-meta">
+              <span class="down">−21.2% vs Aug 2</span> &nbsp;·&nbsp;
+              <span class="down">−32.8% vs July average</span>
+            </div>
+          </div>
+        </summary>
+        <div class="day-body-inner">
+
+          <div class="subhead">Sales by channel</div>
+          <div class="expense-item"><span>Dine In</span><span class="amt">176,772</span></div>
+          <div class="expense-item"><span>KOT Sale</span><span class="amt">88,427</span></div>
+          <div class="expense-item"><span>Takeaway</span><span class="amt">41,541</span></div>
+          <div class="expense-item"><span>Delivery</span><span class="amt">22,697</span></div>
+          <div class="expense-item"><span>Staff KOT</span><span class="amt">1,615</span></div>
+          <div class="expense-item"><span>Party Sale</span><span class="amt">0</span></div>
+          <div class="row total"><span class="k">Total Sales</span><span class="v">331,052</span></div>
+
+          <div class="subhead">Expenses</div>
+          <div class="expense-item big"><span>Al-Hilal Industries (large, one-off)</span><span class="amt">247,000</span></div>
+          <div class="expense-item"><span>Eggs (2 purchases)</span><span class="amt">83,500</span></div>
+          <div class="expense-item"><span>Vegetables (3 purchases)</span><span class="amt">50,550</span></div>
+          <div class="expense-item"><span>Mutton</span><span class="amt">31,930</span></div>
+          <div class="expense-item"><span>Dashi Bread Crumbs</span><span class="amt">22,032</span></div>
+          <div class="expense-item"><span>Chicken</span><span class="amt">13,186</span></div>
+          <div class="expense-item"><span>Misc. Expense</span><span class="amt">8,510</span></div>
+          <div class="expense-item"><span>Drinks Tin</span><span class="amt">7,900</span></div>
+          <div class="expense-item"><span>Service Charges</span><span class="amt">7,677</span></div>
+          <div class="expense-item"><span>Fresh Cream</span><span class="amt">5,000</span></div>
+          <div class="expense-item"><span>Kot Service Charges</span><span class="amt">3,630</span></div>
+          <div class="expense-item"><span>Milk</span><span class="amt">3,634</span></div>
+          <div class="expense-item"><span>Sales Discount</span><span class="amt">1,591</span></div>
+          <div class="expense-item"><span>Tip From Table#80 KOT#303</span><span class="amt">1,279</span></div>
+          <div class="row total"><span class="k">Total Expenses</span><span class="v">501,619</span></div>
+
+          <div class="subhead">Receipts</div>
+          <div class="expense-item"><span>Chq Rec. From Bank AlFalah</span><span class="amt">247,000</span></div>
+          <div class="expense-item"><span>Cash Rec. From Cash In Hand</span><span class="amt">152,000</span></div>
+          <div class="expense-item"><span>Mian Fazeel Sb. ADV Rec</span><span class="amt">20,000</span></div>
+          <div class="expense-item"><span>MS Mutton KOT#494 (16-07-26)</span><span class="amt">2,509</span></div>
+          <div class="expense-item"><span>MS Mutton / KOT#394 (02-08-26)</span><span class="amt">1,972</span></div>
+          <div class="expense-item"><span>Crockery Share</span><span class="amt">1,170</span></div>
+          <div class="row total"><span class="k">Total Receipts</span><span class="v">424,651</span></div>
+
+          <div class="subhead">Pending</div>
+          <div class="expense-item"><span>Saqib Sb / AEG-Services KOT#303</span><span class="amt">88,427</span></div>
+          <div class="expense-item"><span>Jameel Abbas SB INV#02</span><span class="amt">2,907</span></div>
+          <div class="expense-item"><span>Jameel Abbas SB INV#56</span><span class="amt">1,114</span></div>
+          <div class="row total"><span class="k">Total Pending</span><span class="v">92,448</span></div>
+
+          <div class="subhead">Credit Card</div>
+          <div class="expense-item"><span>Credit Card</span><span class="amt">134,194</span></div>
+          <div class="expense-item"><span>Credit Card</span><span class="amt">27,028</span></div>
+          <div class="row total"><span class="k">Total Credit Card</span><span class="v">161,222</span></div>
+
+          <div class="subhead">Cash</div>
+          <div class="row"><span class="k">Cash in Hand (today)</span><span class="v">414</span></div>
+          <div class="row"><span class="k">Cash balance (running total)</span><span class="v">144,009</span></div>
+
+          <div class="note bad">
+            Expenses (501,619) exceeded sales (331,052) — but almost all of it is one payment to Al-Hilal Industries (247,000, likely equipment or materials), matched by a same-day receipt from Bank AlFalah for the same amount. Without that pair, real operating expense was closer to 254,619 — near a normal day. This looks like an equipment/materials day, not a bad sales day.
+          </div>
+        </div>
+      </details>
+
+    </div>
+
+    <div class="section">
+      <div class="note bad">
+        <b>3-day average: 406,664 PKR/day</b> — about 17% below the July average, falling each of the three days. Worth watching, not yet a conclusion — three days is a short window, right at the start of a handover. If the same pattern continues past a week, it becomes worth acting on.
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">Zanzibar — for the family's reference</div>
+</div>
+</body>
+</html>
