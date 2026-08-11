@@ -4,7 +4,7 @@
 - **事業**: ShareLounge（DHA Phase 3, Lahore・B1F・約220m²）
 - **決定者**: 奏画（COO）
 - **起案**: 一郎（Executive）
-- **参照**: TSUTAYA SHARE LOUNGE（`strategy/sharelounge/benchmark-tsutaya.md`）。奏画さん提供の3セットのビジュアル。
+- **参照**: TSUTAYA SHARE LOUNGE（`Pending001_ShareLounge/benchmark-tsutaya.md`）。奏画さん提供の3セットのビジュアル。
 
 ## 何を決めたか
 

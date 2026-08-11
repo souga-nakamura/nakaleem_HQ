@@ -1,11 +1,13 @@
-# レストラン事業（事業承継）— Nakaleem Industries
+# Zanzibarレストラン事業（事業承継）— Nakaleem Industries
 
-作成: 2026-07-19 / 担当: 一郎（Executive・秘書）/ 相談元: 奏画（COO）
+作成: 2026-07-19 / 最終更新: 2026-08-10（事業ポートフォリオ再定義に伴い更新）/ 担当: 一郎（Executive・秘書）/ 相談元: 奏画（COO）
 
-位置づけ: Nakaleem Industries の4事業のうちの1つ。**新規開業ではなく、奏画さんの父・Saleem Iqbal（70歳）が営むレストランの事業承継**。
+位置づけ: Nakaleem Industriesの主軸4事業のうちの1つ「**Zanzibarレストラン**」。**新規開業ではなく、奏画さんの父・Saleem Iqbal（70歳）が営むレストランの事業承継**。
+
+> **🆕 2026-08-10、Zanzibarブランドは「レストラン」と「Coffee Shop」の2事業に分割された。** このファイルは**レストラン**のみを扱う。Zanzibar Coffee Shop（新規カフェ事業）は別事業として扱う（詳細未着手、`../coffee-shop/README.md` の旧データを参考に検討予定）。詳細 `../../Company001_Corporate/decisions/2026-08-10-portfolio-pivot-4-pillars.md`
 
 > **現在のフォーカス（2026-07-19 奏画さん指示）**: 当面は **Zanzibar（Multan）1店に集中**。この1店を円滑に承継しきることだけが目標。将来的にはお父様の他店も承継しうるが、**今は考えない**（下の複数店の論点は将来用に保留）。
-> → 実務の主戦場は `strategy/restaurant/zanzibar.md`。
+> → 実務の主戦場は `Serv001_Zanzibar/restaurant/zanzibar.md`。
 
 ---
 
@@ -55,7 +57,7 @@
 
 | # | 店名 | 立地 | 業態 | 状態 | 詳細 |
 |---|------|------|------|------|------|
-| 1 | **Zanzibar**（★当面ここに集中） | Multan（Abdali Rd, Altaf Town） | Fine Dining & Buffet（Pakistani/Chinese/BBQ） | 稼働中・Google 4.2/2,870件の有力店 | `strategy/restaurant/zanzibar.md` |
+| 1 | **Zanzibar**（★当面ここに集中） | Multan（Abdali Rd, Altaf Town） | Fine Dining & Buffet（Pakistani/Chinese/BBQ） | 稼働中・Google 4.2/2,870件の有力店 | `Serv001_Zanzibar/restaurant/zanzibar.md` |
 
 ## 【将来用・保留】複数店承継の論点
 

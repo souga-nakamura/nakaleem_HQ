@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zanzibar — フードロス対策の検討</title>
+<style>
+  :root{
+    --page:      #f7f8fb;
+    --surface:   #ffffff;
+    --surface-2: #f4f6f9;
+    --border:    #e1e5ec;
+
+    --ink:       #10151f;
+    --ink-soft:  #565f6e;
+
+    --blue:      #4f46e5;
+    --blue-deep: #3730a3;
+    --blue-bg:   #eef0fd;
+
+    --bad:       #ae1f1f;
+    --bad-bg:    #fdedec;
+
+    --good:      #147a4c;
+    --good-bg:   #eaf8f0;
+
+    --r: 16px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0; overflow-x:hidden;}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Segoe UI",Helvetica,Arial,sans-serif;
+    background:var(--page); color:var(--ink);
+    font-size:18px; line-height:1.6;
+  }
+  .app{max-width:680px; margin:0 auto; padding:0 20px 100px;}
+
+  header{
+    margin:0 -20px 32px; padding:36px 20px 26px;
+    background:linear-gradient(155deg, var(--blue-deep) 0%, var(--blue) 100%);
+    color:#fff;
+  }
+  .updated{font-size:14px; color:rgba(255,255,255,0.72); font-weight:700; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.03em;}
+  h1{font-size:26px; font-weight:800; margin:0 0 6px;}
+  .subtitle{font-size:15px; color:rgba(255,255,255,0.85); margin:0;}
+
+  .section{margin-bottom:36px;}
+  .section-title{font-size:20px; font-weight:800; margin-bottom:6px;}
+  .section-hint{font-size:14.5px; color:var(--ink-soft); margin-bottom:14px;}
+
+  .card{background:var(--surface); border:1px solid var(--border); border-radius:var(--r); padding:20px; box-shadow:0 2px 10px rgba(16,21,31,0.05);}
+
+  .who{display:flex; gap:12px; align-items:flex-start; margin-bottom:16px;}
+  .who .badge{flex-shrink:0; width:44px; height:44px; border-radius:50%; background:var(--blue-bg); color:var(--blue-deep); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:16px;}
+  .who .name{font-weight:800; font-size:17px;}
+  .who .role{font-size:14px; color:var(--ink-soft); font-weight:600;}
+
+  .cause-grid{display:grid; grid-template-columns:1fr; gap:10px; margin-top:14px;}
+  .cause{background:var(--surface-2); border-radius:12px; padding:14px 16px; font-size:15.5px;}
+  .cause b{display:block; font-size:15px; margin-bottom:2px;}
+
+  .kpi-grid{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:16px;}
+  .kpi{background:var(--surface); border:1px solid var(--border); border-radius:var(--r); padding:16px 18px; box-shadow:0 2px 10px rgba(16,21,31,0.05);}
+  .kpi .kpi-label{font-size:12.5px; font-weight:700; color:var(--ink-soft); text-transform:uppercase; letter-spacing:0.02em; margin-bottom:6px;}
+  .kpi .kpi-value{font-size:22px; font-weight:800;}
+  .kpi .kpi-sub{font-size:13px; font-weight:600; color:var(--ink-soft); margin-top:4px;}
+
+  .note{
+    font-size:15.5px; line-height:1.65; padding:16px 18px;
+    background:var(--surface-2); border:2px solid var(--border); border-radius:var(--r); margin-top:14px;
+  }
+  .note b{font-weight:800;}
+  .note.bad{background:var(--bad-bg); border-color:#f3c9c7; color:var(--bad);}
+  .note.bad b{color:var(--bad);}
+  .note.good{background:var(--good-bg); border-color:#c3e6d1; color:var(--good);}
+  .note.good b{color:var(--good);}
+
+  .phase{background:var(--surface); border:1px solid var(--border); border-radius:var(--r); padding:18px 20px; margin-bottom:12px; box-shadow:0 2px 10px rgba(16,21,31,0.05);}
+  .phase .phase-tag{display:inline-block; font-size:12px; font-weight:800; color:#fff; background:linear-gradient(135deg, var(--blue) 0%, var(--blue-deep) 100%); border-radius:6px; padding:3px 9px; margin-bottom:10px;}
+  .phase .phase-when{font-size:13.5px; color:var(--ink-soft); font-weight:600; margin-bottom:12px;}
+  .phase ul{margin:0; padding-left:20px; font-size:16px;}
+  .phase li{margin-bottom:8px;}
+  .phase li:last-child{margin-bottom:0;}
+  .phase li b{color:var(--blue-deep);}
+
+  .qa-list{background:var(--surface); border:1px solid var(--border); border-radius:var(--r); overflow:hidden; box-shadow:0 2px 10px rgba(16,21,31,0.05);}
+  .qa-list > div{padding:16px 18px; border-bottom:1px solid var(--border); font-size:16px;}
+  .qa-list > div:last-child{border-bottom:none;}
+  .qa-list .q-num{display:inline-flex; align-items:center; justify-content:center; width:24px; height:24px; border-radius:50%; background:var(--blue-bg); color:var(--blue-deep); font-weight:800; font-size:13px; margin-right:8px; flex-shrink:0;}
+
+  .footer{text-align:center; color:var(--ink-soft); font-size:13px; margin-top:40px; font-weight:600;}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <header>
+    <div class="updated">2026年8月4日</div>
+    <h1>Zanzibar — フードロス対策の検討</h1>
+    <p class="subtitle">Zeeshanさんの提言をもとに、Zanzibarでどう進めるか</p>
+  </header>
+
+  <div class="section">
+    <div class="section-title">1. 誰から、何が来たか</div>
+    <div class="card">
+      <div class="who">
+        <div class="badge">Z</div>
+        <div>
+          <div class="name">Zeeshan さん</div>
+          <div class="role">レストラングループ全体の会計責任者トップ（各店のアカウンタントを統括）／義父Saleem Iqbalさんの社員</div>
+        </div>
+      </div>
+      <div class="note">
+        <b>要旨:</b> フードコストが既に許容範囲を超えている。主な原因は「半調理のまま放置された料理」の廃棄。これが利益・キャッシュ・メニュー価格・料理の質にまで影響していると指摘。
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">2. 廃棄が生まれる4つの原因</div>
+    <div class="section-hint">Zeeshanさんの指摘を整理</div>
+    <div class="cause-grid">
+      <div class="cause"><b>① 温度管理</b>危険な温度帯に食品を置いたままにし、傷みが早まる</div>
+      <div class="cause"><b>② 仕込みすぎ</b>売れる量より先に多く作ってしまい、余剰が保存できない</div>
+      <div class="cause"><b>③ 保管の習慣</b>密閉容器を使わない・日付を書かないため、気づかず期限切れになる</div>
+      <div class="cause"><b>④ 先入れ先出し(FIFO)が徹底されていない</b>古い在庫の管理ができず、新しい食材を先に使ってしまう</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">3. 今、数字で分かっていること</div>
+    <div class="section-hint">7月（義父運営時代・参考値）の実績</div>
+    <div class="kpi-grid">
+      <div class="kpi">
+        <div class="kpi-label">原価率（COGS）</div>
+        <div class="kpi-value">43%</div>
+        <div class="kpi-sub">売上15,278,417 中 6,551,171</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">純利益率</div>
+        <div class="kpi-value">13%</div>
+        <div class="kpi-sub">目標30%との差 17pt</div>
+      </div>
+    </div>
+    <div class="note bad">
+      <b>ここが今の限界です。</b> 現在の記録は「仕入れ額」と「支出額」の総額のみで、<b>廃棄そのものの量や金額は記録されていません。</b> つまり「原価率43%のうち、廃棄が何%を占めているか」はまだ誰にも分かっていない状態です。フェーズ0（次項）はまず<b>この数字を初めて可視化するための一手</b>です。
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">4. 進め方の大前提</div>
+    <div class="note good">
+      <b>今の私（奏画）の仕事は、Zanzibarを立て直すこと。</b> ただしハレーションを起こさず、ゆっくり自然に進める。ビジネスを理解し、社員との信頼を築くことを優先する。<br><br>
+      パキスタンの識字率も踏まえ、<b>厨房スタッフに「書く・記録する」負担を新たに増やさない。</b> 彼らが元々やっている作業（仕込む・出す・片付ける）の中に、自然に混ぜ込める形から始める。
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">5. 実行プラン</div>
+
+    <div class="phase">
+      <div class="phase-tag">フェーズ 0</div>
+      <div class="phase-when">今すぐ・書面記録なし・コストほぼゼロ</div>
+      <ul>
+        <li><b>時刻シールを貼るだけ</b> — 仕込んだ容器に「作った時刻」のシールやマーカー書きを貼る。文章不要、時刻だけ。これがFIFOの土台になる</li>
+        <li><b>ビュッフェの補充を小分けに</b> — 一度に大量に出すのをやめ、少しずつ追加する。記録不要、出し方を変えるだけ</li>
+        <li><b>廃棄が出たら容器ごと見せる</b> — 書かせるのではなく「見せる・口頭で伝える」運用。まずは私たちの側で傾向を掴む</li>
+      </ul>
+    </div>
+
+    <div class="phase">
+      <div class="phase-tag">フェーズ 1</div>
+      <div class="phase-when">信頼が育ってから・2〜4週間目安</div>
+      <ul>
+        <li>曜日ごとの仕込み目安を、書面ではなく口頭で厨房責任者とすり合わせ</li>
+        <li>ブラストチラーなど設備の状況を確認（投資が必要なら判断）</li>
+        <li>現場の様子を見ながら、必要なら短いブリーフィングを検討（無理に日課化しない）</li>
+      </ul>
+    </div>
+
+    <div class="phase">
+      <div class="phase-tag">フェーズ 2</div>
+      <div class="phase-when">さらに先・自然に浸透してから</div>
+      <ul>
+        <li>月次のフードコスト%を追い、現場に新たな記録作業を求めず経営側で見える範囲から改善を確認</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">6. 会話して決めたいこと</div>
+    <div class="section-hint">この場で奏画さんと確認したい論点</div>
+    <div class="qa-list">
+      <div><span class="q-num">1</span>フェーズ0の3つは、今週から現場に伝えてよさそうか？ 誰から伝えるのが自然か（奏画さん本人／厨房責任者経由）</div>
+      <div><span class="q-num">2</span>Zeeshanさんへの返信は、いつ・どんなトーンで送るか（感謝＋「一緒に少しずつ試したい」の方向で調整中）</div>
+      <div><span class="q-num">3</span>「廃棄を見せる」運用を、まずどのくらいの期間続けて様子を見るか</div>
+      <div><span class="q-num">4</span>ブラストチラーなど設備投資が必要になった場合の予算感（Nakaleemの投資枠との関係）</div>
+    </div>
+  </div>
+
+  <div class="footer">Zanzibar — 社内検討用メモ（一郎作成）</div>
+</div>
+</body>
+</html>
