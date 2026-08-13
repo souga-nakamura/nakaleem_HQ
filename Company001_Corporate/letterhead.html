@@ -35,13 +35,17 @@
     font-weight:700; margin-top:4px;
   }
   .mark{
-    width:46px; height:46px; border-radius:10px;
-    background:linear-gradient(160deg,var(--deep),#243a37);
-    display:flex; align-items:center; justify-content:center;
-    color:var(--gold); font-weight:800; font-size:20px; letter-spacing:0;
+    width:46px; height:46px;
     flex-shrink:0;
   }
-  .brand-row{display:flex; gap:14px; align-items:flex-start;}
+  .mark img{width:100%; height:100%; object-fit:contain; display:block;}
+  .brand-row{display:flex; gap:14px; align-items:center;}
+  .watermark{
+    position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+    width:110mm; height:110mm; opacity:.06; pointer-events:none; z-index:0;
+  }
+  .watermark img{width:100%; height:100%; object-fit:contain;}
+  .header,.body-area,.footer{position:relative; z-index:1;}
   .contact{
     text-align:right; font-size:11px; color:var(--ink2); line-height:1.7;
   }
@@ -82,9 +86,11 @@
 <div class="toolbar"><button onclick="window.print()">PDF / Print</button></div>
 
 <div class="page">
+  <div class="watermark"><img src="logo/3.png" alt=""></div>
+
   <div class="header">
     <div class="brand-row">
-      <div class="mark">N</div>
+      <div class="mark"><img src="logo/3.png" alt="Nakaleem Industries logo"></div>
       <div class="brand">
         <div class="name">Nakaleem Industries</div>
         <div class="sub">(Pvt.) Ltd.</div>
