@@ -22,7 +22,7 @@
   2. **Zanzibarレストラン**（事業承継 → シズラー型は長期バックログ） — 奏画さんの父 **Saleem Iqbal（70歳）** のレストランを奏画＋Furvaが承継。**当面は Zanzibar（Multan）1店に集中**。Fine Dining & Buffet・Google 4.2/2,870件・FB4,630+（運営法人=Zanzibar Pvt. Ltd.）。**承継対価=無償**。経営目標=1日平均売上75〜90万PKR・純利益率30%。`Serv001_Zanzibar/restaurant/README.md`／`zanzibar.md`
   3. **Zanzibar Coffee Shop**（新規・Zanzibarブランドでのカフェ展開、旧独立Coffee Shop案を統合） — 構想段階。`Serv001_Zanzibar/coffee-shop/README.md`（旧独立案・参考データ）
   4. **カラオケ**（Lahore DHA Z Block・2F、物件確定・4部屋で着工決定） — `Serv002_Karaoke/カラオケ事業マスター.md`
-- **ペンディング**: ShareLounge（`Pending001_ShareLounge/`、DHA Phase3物件が白紙）／My Nanny（`Serv004_MyNanny/`、内容未把握）
+- **ペンディング**: ShareLounge（`Pending001_ShareLounge/`、DHA Phase3物件が白紙）／My Nanny（`Pending002_MyNanny/`、事業モデル設計済み・Furva提案済みだが2026-08-13奏画さんの意向で他プロジェクト優先のため保留）
 - **Nakaleem 事業投資の予算枠 = 40,000,000 PKR（4,000万）。全額 自己資金（返済義務なし）**。奏画さんの総キャッシュは約6,000万あり資金不足の心配はないが、**意図的に4,000万に上限を区切る規律（バジェット・ディシプリン）**。一郎は資金判断で「4,000万に収める」を前提とし、超過案は追加投入前提にせず枠内の配分見直しを先に出す。**2026-08-10のポートフォリオ再定義で、旧計画のShareLounge工事4M・独立Coffee Shop 25Mは当面フリーに。一方カラオケのcapex概算約1,100万PKRが新たに資金計画に加わっている**（詳細 `Company001_Corporate/finance/capital-and-budget.md`）。Zanzibarは無償承継かつ稼働中の収益店＝資金繰りにプラス。
 
 ### Burjan リポジトリ移行（2026-08-06）
@@ -202,6 +202,14 @@
 - 確認事項: ①現行POSがPRA QR付き正式レシートを発行できるか ②できない場合の導入コスト・リードタイム ③リスクある運用を即停止できるか。地場の税務・POS規制のためaikoへの法務相談を推奨。
 - TASKS.mdにP1タスクとして登録。詳細 `Serv001_Zanzibar/restaurant/zanzibar.md` 1-10節。
 
+### Zanzibar: Excel月次データ＋8月日次データの大量追加取得（2026-08-12）
+
+- 奏画さんが`Serv001_Zanzibar/restaurant/001_Finance-2026/`と`002_Sales-2026/`にファイルを格納。**Excel（`Zanzibar - Cost Break Detail.xlsx`）から2026年1〜7月の月次原価・経費明細（科目別・約90項目）を取得**。7月分は既存記録と完全一致し、データの信頼性を確認。原価率36.3%〜45.8%・純利益率6.1%〜15.6%と**月次のブレが大きいことが判明**（特に6月は営業費用比率54.6%と突出）。
+- **写真11枚から8/4〜8/11の日次データを追加取得**（従来欠測だった8/4〜8/7を含む）。**11日間平均は456,765PKR（対825k目標比55%、7月比△7.3%）**に改善（3日間時点の△17%より縮小）。8/8・8/9は対目標比70%台まで到達。
+- ⚠️**2件の異常値を検出・記録**: ①8/5「RTGS MD SB HBL 5,000,000」の大型送金（同額入金と対応、日常営業費ではなく資金移動と推測だが用途未確認）②8/10「For Staff Salary 1,287,000」（スタッフ給与月払い、同額の銀行入金と相殺）。この2日は支出合計が跳ねるが営業実態の悪化ではないため要注意。③8/11の帳票上「Previous Day Balance」が8/10終値480,339と一致せず+1,287,000の差異あり、要確認。
+- `Serv001_Zanzibar/restaurant/zanzibar.md`（1-4節=月次サマリー、1-5節=日次ログ）に全反映済み。ダッシュボード（`Product001_Zanzibar-dashboard`、奏画さん個人リポジトリ）の`mockData.ts`にも実データとして反映、型チェック・ビルド確認済み。
+- 一郎メモ: Excelでのデータ提供は手書き帳票の写真より圧倒的に読み取り精度が高い。今後もZeeshan氏・Bassit氏からExcelで受領できると転記ミスのリスクが下がる。
+
 ## 直近の最優先事項（Open）
 
 - [ ] 初期資本・当面の運転資金の把握
@@ -264,3 +272,5 @@
 - 2026-08-04: Zanzibarの詳細P/L（未確認論点②）を受領。**7月＝義父運営(参考値、純利益196万PKR・純利益率13%)、8月1日〜＝奏画さん・Furvaさん運営(本番)へ承継が実質スタート**。従来の伝聞「オーナー手取り月約100万」の実績はほぼ倍と判明（要検証）。8/1-3の日次データ（1日平均406,664、7月比△17%）はサンプル不足で判断保留、1〜2週間分の蓄積を待つ方針。`Serv001_Zanzibar/restaurant/zanzibar.md`（1-4/1-5節）・Executiveボード・TASKS.mdに反映。
 - 2026-08-04: Zanzibarに**新経営目標（1日平均売上75〜90万PKR・純利益率30%）**を設定（旧目標「手取り月300〜500万」から置き換え）。日次キャッシュブック運用に合わせ**日次ログ／月次サマリーの2種テンプレート**を`Serv001_Zanzibar/restaurant/zanzibar.md`に整備（1-4〜1-6節）、既存8/1-3・7月データを再構成。**改善ロードマップ=Phase1(衛生/おもてなし/SNS即改善)→Phase2(日本食含む新メニュー段階導入)**を1-7節に確定、既存改善レバー候補と統合。TASKS.mdにPhase1(3件)・Phase2(1件)の具体アクション登録。PDF自動資料化機能はバックログ(P5)入りのみで実装は先送り。
 - 2026-08-10: **事業ポートフォリオを主軸4事業（不動産業／Zanzibarレストラン／Zanzibar Coffee Shop／カラオケ）に再整理。** Zanzibarをレストランとカフェの2事業に分割、**独立Coffee Shop事業（米田珈琲型・予算25M）は廃止しZanzibar Coffee Shopへ一本化**。ShareLoungeはDHA Phase 3物件が白紙（アイデンブリッドの1F/2F移転キャンセルで代替物件が消失）となり、良物件が出るまでペンディング。不動産業（Burjan）は事業内容変更なしだがブランド名再検討の意向。`Company001_Corporate/decisions/2026-08-10-portfolio-pivot-4-pillars.md`・`Pending001_ShareLounge/decisions/2026-08-10-sharelounge-property-fell-through.md` 作成、TASKS.md反映。
+- 2026-08-12: My Nannyの事業モデルをヒアリング・設計。当初検討の派遣型（月次マージン課金）は引き抜きリスク・固定費の重さから不採用、市場調査（Gulf/パキスタン）に基づき**一時金型（面談料5,000PKR＋成約時45,000PKR＝合計50,000PKR）＋連絡先非開示等の引き抜き防止3層設計**に確定。CEO Furvaへ英語提案（メモ＋HTML資料）を作成・送付済み。`Pending002_MyNanny/README.md`（旧`Serv004_MyNanny/`）に記録。
+- 2026-08-13: 奏画さんの意向で**My Nannyをペンディングに変更**（事業モデルは設計済み・Furva回答待ちだが、他の優先プロジェクトにリソース集中のため着手は保留）。フォルダを`Serv004_MyNanny/`→`Pending002_MyNanny/`に改名、CLAUDE.md・Executiveボード・overview.mdの参照を更新。併せて`meetings/`フォルダ（未使用）を廃止し、打ち合わせメモはExecutiveボードに直接記録する方針をCLAUDE.mdに明記。

@@ -51,8 +51,6 @@ nakaleem_HQ/
 ├── Serv003_Realestate/                ← 不動産業（Burjan、ブランド名再検討予定）
 │   └── tasks.md
 │
-├── Serv004_MyNanny/                   ← 新規事業候補（内容未把握・別軸で保留）
-│
 ├── Company001_Corporate/              ← 会社全体・全社横断（旧company/）
 │   ├── tasks.md                           ← 全社横断タスクのみ（事業別タスクは各事業フォルダへ）
 │   ├── decisions/                         ← 全社横断の意思決定ログ（ポートフォリオ再定義など）
@@ -61,9 +59,12 @@ nakaleem_HQ/
 │   ├── legal/                             ← 登記・法務・契約・ライセンス
 │   └── finance/                           ← 資本・銀行・会計・税務
 │
-└── Pending001_ShareLounge/            ← ペンディング事業（DHA Phase3物件が白紙、良物件待ち）
-    ├── tasks.md
-    └── decisions/
+├── Pending001_ShareLounge/            ← ペンディング事業（DHA Phase3物件が白紙、良物件待ち）
+│   ├── tasks.md
+│   └── decisions/
+│
+└── Pending002_MyNanny/                ← ペンディング事業（事業モデル設計・Furva提案済み、優先度を下げて保留・2026-08-13）
+    └── README.md
 ```
 
 ※ 必要なフォルダ/ファイルが無ければ作ってよい。作ったら本ファイルの構造に追記する。

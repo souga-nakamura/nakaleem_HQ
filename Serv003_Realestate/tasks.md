@@ -13,11 +13,12 @@
 
 > 「アプリさえ作れば普通に営業できる」ではなく、**法人としての登録が必須**と判明。詳細は愛子の法務メモリ `~/.claude/aiko-legal-memory/jurisdictions/pakistan-real-estate-brokerage.md` を参照。未登録だと法律違反以前に、DHA/Bahriaの名義変更窓口が使えず成約自体が完結しない（事業上致命的）。
 
-- [ ] **🔴 Punjab州: 不動産エージェント登録（Certificate of Registration）の申請** — P1 / 担当:奏画+一郎(aiko) / 期限:ASAP / メモ:根拠= Punjab Real Estate Agents and Motor Vehicles Dealers (Regulation of Business) Ordinance, 1980。5年有効。法人登録料は要確認。
-- [ ] **🔴 DHA Lahore: エージェント登録** — P1 / 担当:奏画+一郎(aiko) / 期限:ASAP / メモ:NTN取得＋CEO(Furva)・主要担当者の警察身元確認(Police Character Certificate)＋学歴証明が必要。初回登録料目安Rs.60,000/更新Rs.20,000年。警察証明は時間がかかるため最優先で着手。
+- [x] **NTN（FBR登録）の事業分類確認** — 完了(2026-08-11) / メモ:FBR Online Verification確認済。Registration No. I867941、Principal Activity = "681000-Real estate activities"で登録済み。追加登録不要。
+- [x] **Nakaleem Industries MOA（定款）の事業目的（Objects）確認** — 完了(2026-08-11) / メモ:第3条(i)(a)「marketing and development of all type of real estate...with the permission of concerned authorities and compliance with applicable laws」で不動産業を明記。加えて第3条(ii)で除外業種(banking/NBFC/保険等、第3条(iii)列挙)以外は包括的に許可。不動産仲介業はどちらの経路でもカバー済み。**MOA変更(Alteration)は不要と判断**。
+- [~] **🔴 Punjab州: 不動産エージェント登録（Certificate of Registration）の申請** — P1 / 担当:奏画のアシスタント（英語指示送付済み・2026-08-11） / 期限:ASAP / メモ:根拠= Punjab Real Estate Agents and Motor Vehicles Dealers (Regulation of Business) Ordinance, 1980。5年有効。窓口特定・必要書類リスト・申請料・所要期間の確認を依頼中。回答待ち（次アクション: アシスタントからの返信を受けて書類準備→申請）。
+- [~] **🔴 DHA Lahore: エージェント登録** — P1 / 担当:奏画のアシスタント（英語指示送付済み・2026-08-12） / 期限:ASAP / メモ:NTN(確認済み・上記)＋CEO(Furva)の警察身元確認(Police Character Certificate)＋学歴証明＋登録料(目安Rs.60,000)・推薦要否をアシスタントが確認中。Punjab州登録と並行進行。回答待ち。
 - [ ] **Bahria Town: エージェント登録要件の一次確認** — P2 / 担当:一郎(aiko) / 期限:未定 / メモ:DHAと同様の独自登録制度がある想定だが料金・要件の一次情報は未確認。
-- [ ] **Nakaleem Industries MOA（定款）の事業目的（Objects）確認** — P1 / 担当:奏画+一郎(aiko) / 期限:ASAP / メモ:「不動産仲介業」がObjects条項に含まれているか確認。含まれていなければSECPへのAlteration届出（特別決議）が必要な可能性。
-- [ ] **現地企業法務(コーポレートロイヤー)への確認依頼** — P1 / 担当:奏画 / 期限:ASAP / メモ:愛子調査の限界=①1980年条例の無登録営業への正確な罰則条文②DHA/Bahria最新登録要件の一次情報③MOA現行記載内容。この3点は現地専門家確認が必要。
+- [ ] **現地企業法務(コーポレートロイヤー)への確認依頼** — P1 / 担当:奏画 / 期限:ASAP / メモ:愛子調査の限界=①1980年条例の無登録営業への正確な罰則条文②DHA/Bahria最新登録要件の一次情報。この2点は現地専門家確認が必要（MOA/NTNは自社資料で解決済みのため対象から除外）。
 
 ## 物件登録件数の拡大
 

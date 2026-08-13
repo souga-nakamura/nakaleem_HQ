@@ -73,7 +73,7 @@ Nakaleem Industries の主軸は以下4事業。
 **ペンディング（優先順位を下げて保留）**:
 - **ShareLounge**（シェアオフィス・カフェとオフィスの中間業態）— DHA Phase 3物件が白紙（アイデンブリッドの1F/2F移転キャンセルで代替物件消失）。良い物件が出るまで保留。`Pending001_ShareLounge/`
 - **独立Coffee Shop事業**（米田珈琲型）— 廃止・Zanzibar Coffee Shopに一本化。`Serv001_Zanzibar/coffee-shop/README.md` はアーカイブ扱い（P/L・立地ロジックは参考データとして保持）。
-- **My Nanny** — 内容未把握のまま保留。
+- **My Nanny** — 事業モデル設計済み・CEO Furvaへ提案送付済みだが、2026-08-13奏画さんの意向で他プロジェクト優先のためペンディング。`Pending002_MyNanny/`
 
 各事業のサマリは下記。個別の戦略・数値は各フォルダを参照。
 
@@ -108,5 +108,5 @@ Nakaleem Industries の主軸は以下4事業。
 - [ ] カラオケ資金ギャップの手当て（P1最優先）
 - [ ] Zanzibar Coffee Shopの一次コンセプト設計
 - [ ] 不動産業（Burjan）のブランド名再検討
-- [ ] My Nannyの内容ヒアリング
+- [x] My Nannyの内容ヒアリング・事業モデル設計（完了2026-08-13、ペンディング化）
 - [ ] ShareLounge代替物件の探索基準整理（急がず）
