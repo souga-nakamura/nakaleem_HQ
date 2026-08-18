@@ -18,9 +18,9 @@
 - [ ] **Zanzibar Phase 1: 接客/おもてなしの現場観察と改善** — P1 / 担当:奏画（現場）+一郎（観察項目下書き） / 期限:ASAP / メモ:スタッフ対応・提供スピード・クレーム対応の実態観察。一郎が観察項目・改善指導ドラフトを用意。詳細 `restaurant/zanzibar.md` 1-7節。
 - [ ] **Zanzibar Phase 1: SNS運用状況の確認と即改善** — P1 / 担当:奏画（現場）+一郎（現状分析・改善案下書き） / 期限:ASAP / メモ:既存Facebook(フォロワー4,630+)等の運用実態確認、更新頻度・内容・返信対応の即改善。一郎が現状分析・改善案を事前ドラフト。詳細 `restaurant/zanzibar.md` 1-7節。
 - [ ] **Zanzibar Phase 2: 日本食要素を含む新メニューの段階的導入** — P2 / 担当:Furva+一郎 / 期限:Phase1安定後 / メモ:Furvaさんのメニュー開発と連携。既存レバー候補「客単価向上」をこのPhaseで本格実行。詳細 `restaurant/zanzibar.md` 1-7節。
-- [ ] **🆕 Zanzibar: マーケティング＆ブランディング施策の具体化** — P1 / 担当:一郎（ドラフト）+奏画 / 期限:未定 / メモ:ビジョン②「みんなに知ってもらう」の実行アイテム。Phase1のSNS改善（本節タスク）と一体で推進。詳細 `restaurant/zanzibar.md` 1-2b節。
+- [ ] **🆕 Zanzibar: マーケティング＆ブランディング施策の具体化** — P1 / 担当:一郎（ドラフト）+奏画 / 期限:未定 / メモ:ビジョン②「みんなに知ってもらう」の実行アイテム。Phase1のSNS改善（本節タスク）と一体で推進。**2026-08-18追加**: 具体施策として「Pop on table（卓上ポップ）」「Entrance pop（入口ポップ）」「Social media footage（SNS用撮影素材）」が判明。詳細 `restaurant/zanzibar.md` 1-2b節・1-13節。
 - [ ] **🆕 Zanzibar: ドリンク＆スイーツメニューの改善** — P2 / 担当:Furva+一郎 / 期限:未定 / メモ:新規改善レバー。ビュッフェの追加注文動線として客単価向上に寄与見込み。詳細 `restaurant/zanzibar.md` 1-2b節。
-- [ ] **🆕 Zanzibar: テーブルメニューのデザイン変更** — P2 / 担当:一郎（ドラフト）+Furva / 期限:未定 / メモ:ブランディング施策の実行アイテム。仕様（言語・写真点数・印刷方式）は次回詰める。詳細 `restaurant/zanzibar.md` 1-2b節。
+- [ ] **🆕 Zanzibar: テーブルメニューのデザイン変更** — P2 / 担当:一郎（ドラフト）+Furva / 期限:未定 / メモ:ブランディング施策の実行アイテム。仕様（言語・写真点数・印刷方式）は次回詰める。**2026-08-18追加**: "Make menu design"、**テンプレート活用で8割を賄う方針**が判明（"80% with templating"）。詳細 `restaurant/zanzibar.md` 1-2b節・1-13節。
 - [x] **🔴 Zanzibar経営ダッシュボードリポジトリを個人アカウントへ移管** — 完了(2026-08-12) / 担当:一郎 / メモ:Uncle Saleemより「この財務情報（今月売上・今年のコスト）は他に出すな」との指示。`nakaleemindustries-01/Product001_Zanzibar-dashboard`（Nakaleem組織・複数人アクセス可能性あり）から**奏画さん個人GitHubアカウント`souga-nakamura`へrepository transfer実施**（private維持）。新URL: https://github.com/souga-nakamura/Product001_Zanzibar-dashboard 。README内のzanzibar.mdパス参照も新フォルダ構成に合わせて修正済み。**バックエンド(`amplify/`)は未着手、雛形のみ**。次のステップ=表示データ範囲（日次売上/月次P&L/年間コスト）の確定→実装。
 - [~] **Zanzibar フードロス対策フェーズ0（Multan訪問で現場感を見て判断）** — P1 / 担当:奏画 / 期限:未定（訪問完了・展開判断はヒアリング継続中） / メモ:グループ会計トップZeeshan氏よりフードコスト過多（半調理放置による廃棄）の指摘あり。奏画さん方針=ハレーションを起こさずゆっくり進める・現場に新たな記録負担を課さない。フェーズ0案=①仕込み容器への時刻ラベル貼り②ビュッフェ補充の小分け化③廃棄は書かせず見せる運用。**2026-08-10、奏画さんがMultan訪問から帰還。現場は良好（店内清潔・接客まあまあ・売上8/8=69万/8/9=60万前後で目標レンジに接近）だが「もっと直していきたい」との所感。フェーズ0展開タイミング／Zeeshan氏への返信状況は次回ヒアリングで確認**。詳細 `restaurant/zanzibar.md` 1-8/1-9節、社内検討資料 `restaurant/zanzibar-foodloss-plan.html`。
 - [ ] **Zeeshan氏へのフードコスト指摘への返信** — P3 / 担当:義父Saleem Iqbalさん（奏画さんから依頼予定） / 期限:未定 / メモ:奏画さんは義父とまだこの件を話していないため、まず義父から返信する流れ。一郎による返信ドラフトは現時点で保留（依頼があれば作成）。
@@ -28,6 +28,19 @@
 - [x] **Excel月次コストデータの取り込み確認（2026年1〜7月）** — 完了(2026-08-12) / 担当:一郎 / メモ:Zeeshan氏より`001_Finance-2026/Zanzibar - Cost Break Detail.xlsx`を受領、openpyxlで読み取り成功。1〜7月の原価・経費が科目別(約90項目)で完全構造化。7月分は既存記録と完全一致確認。`restaurant/zanzibar.md` 1-4節に1〜6月分を追加、ダッシュボード(`Product001_Zanzibar-dashboard`)のmonthlySummariesにも反映済み。
 - [ ] **8/5 RTGS 500万送金・8/11現金残高不一致の確認** — P2 / 担当:奏画 / 期限:未定 / メモ:8/5の「RTGS MD SB HBL 5,000,000」の使途（同額の入金と対応しており日常営業費ではなさそうだが用途未確認）。8/11の帳票「Previous Day Balance」が8/10終値480,339ではなく1,767,339と記載され差異+1,287,000あり（8/12時点では残高チェーンは整合、8/11時点の記載のみの問題と推測）。詳細 `restaurant/zanzibar.md` 1-5節。
 - [ ] **🆕 スタッフ給与の支払い頻度・体系の確認** — P2 / 担当:奏画 / 期限:未定 / メモ:2026-08-13、8/12の日次データで判明。**8/10(1,287,000)・8/12(1,308,020)と近い金額の「Staff Salary」払いが4日以内に2回発生**（8/10は銀行入金で手当て、8/12は手元現金からの引出しで手当て）。月2回払い(半月払い等)の給与体系の可能性、あるいは支払い遅延/訂正の可能性があり、実態確認が必要。詳細 `restaurant/zanzibar.md` 1-5節（8/12詳細）。
+- [x] **電気代急増トレンドの現地確認** — 完了(2026-08-18) / 担当:奏画 / メモ:Multan現地でBassitマネージャーに確認、夏場の空調負荷による季節要因と判明。異常な浪費ではないと判断。詳細 `restaurant/zanzibar.md` 1-11節（課題#2）。
+
+### Multan現地滞在での検討事項（2026-08-18 奏画さんリスト・一郎が分類）
+
+- [ ] **POS品目別・時間帯別の注文データ分析基盤の整備** — P1 / 担当:奏画+一郎 / 期限:未定 / メモ:"Data breakdown of who orders what and when"。既存の「客単価・客数はPOS品目データ待ち」継続課題と直結。TOP10ランキング・売上への施策効果測定（下記タスク）の前提となるため優先度高。詳細 `restaurant/zanzibar.md` 1-13節。
+- [ ] **人気メニューTOP10ランキングの作成** — P2 / 担当:一郎 / 期限:未定 / メモ:"Top 10 ranking"。上記POSデータ分析が整い次第着手。詳細 `restaurant/zanzibar.md` 1-13節。
+- [ ] **CCTV遠隔アクセスの検討** — P3 / 担当:奏画 / 期限:未定 / メモ:"CCTV access"。セキュリティ・オペレーション管理目的、新規論点。詳細 `restaurant/zanzibar.md` 1-13節。
+- [ ] **年間イベントスケジュールの整備** — P3 / 担当:Furva+一郎 / 期限:未定 / メモ:"Annual schedule of events"。稼働（宴会/団体需要）向上レバーと関連。詳細 `restaurant/zanzibar.md` 1-13節。
+- [ ] **法人向けランチ/ディナー需要の可能性検討** — P3 / 担当:奏画 / 期限:未定 / メモ:"Corporate lunch dinner possibility check"。新規事業機会として検討。詳細 `restaurant/zanzibar.md` 1-13節。
+- [ ] **ハイティー導入の検討** — P3 / 担当:Furva+一郎 / 期限:未定 / メモ:"Possible high tea"。1-7節Phase2メニュー刷新と統合。詳細 `restaurant/zanzibar.md` 1-13節。
+- [ ] **既存メニューの棚卸し・理解** — P2 / 担当:Furva+一郎 / 期限:未定 / メモ:"Understanding each menu"。ランチメニュー新設・ハイティー検討の前提。詳細 `restaurant/zanzibar.md` 1-13節。
+- [ ] **新規ランチメニューの検討** — P2 / 担当:Furva+一郎 / 期限:未定 / メモ:"Potential lunch menu"。1-7節Phase2と統合。詳細 `restaurant/zanzibar.md` 1-13節。
+- [ ] **施策効果の売上への反映方法（測定フレームワーク）** — P2 / 担当:一郎 / 期限:未定 / メモ:"How to reflect this work into sales"。個別施策ではなく全体のKPI設計・効果測定の枠組み。POSデータ分析基盤（上記タスク）が整ってから着手するのが筋。詳細 `restaurant/zanzibar.md` 1-13節。
 
 参照: `restaurant/README.md`（全体・ビジョン）／`restaurant/zanzibar.md`（実務ログ）
 
