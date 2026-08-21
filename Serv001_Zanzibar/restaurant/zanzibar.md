@@ -253,7 +253,7 @@
 - Pendings: Rauf Sb/Hilton INV#83 327,350／Shakir Ali Sb/Pharmevo INV#85 38,343／Shakir Shabbir Sb/Pharmevo INV#84 38,163／Aqil Sb/Nestle INV#86 39,993／Shoaib Sb/Meji Pharma INV#24 6,687／Jameel Abbas Sb INV#53 17,408／Jameel Abbas Sb INV#72 1,425／Jameel Abbas Sb INV#73 305（合計469,674）
 - Credit Card: Online Previous Bill Rec.AlFalah A/C(GSK) 316,193／Online Bill Rec.AlFalah A/C INV#30 48,549／Credit Card 141,651／Credit Card 162,704（合計669,097）
 - 現金照合: Cash In Hand 883。前日残高349,098＋883－引出67,000＝累計282,981
-- 一郎メモ: **8月新記録**（Dine In単体で832,497と過去最高水準）。Pendingsの「Rauf Sb/Hilton INV#83 327,350」は突出した高額・新規の宛先で用途未確認、要フォロー。品目別（POS Menu Wise Sale Summary）データは奏画さんより「まだ届いていない、届き次第共有」とのこと（①POSデータ分析基盤タスクの前提データ、継続ウォッチ）。
+- 一郎メモ: **8月新記録**（Dine In単体で832,497と過去最高水準）。Pendingsの「Rauf Sb/Hilton INV#83 327,350」は突出した高額・新規の宛先で用途未確認、要フォロー。品目別（POS Menu Wise Sale Summary）データは2026-08-21に8/20分を受領（詳細1-14節）。
 
 ## 1-6. 経営目標（2026-08-04 奏画さん設定、2026-08-19 目標統一）
 
@@ -437,6 +437,33 @@
 - 8/4〜8/6の売上レポート依頼（8/11時点）は、その後**8/12にBassit氏経由で写真が届き、1-5節に反映済み**（8/12送付の11枚の中に8/4〜8/6分も含まれていた）。
 - 公式Gmailのパスワードが平文でWhatsApp上を流れている点は、情報管理上のリスク。パスワードマネージャーでの管理・定期的な変更を推奨（判断は奏画さんに委ねる）。
 - 「レストラン・メニューの写真」依頼は、現在進行中の「テーブルメニューのデザイン変更」タスク（Zanzibar/tasks.md）の参考素材になりうる。
+
+## 1-14. POS品目別データ受領ログ（POS「Menu Wise Sale Summary」）
+
+> **①POSデータ分析基盤タスクの本体**。POSレジから出力される品目別販売サマリー。日次キャッシュブック（1-5節）とは集計対象が異なり、Total Saleとは一致しない（下記参照・要継続確認）。データは`Product001_Zanzibar-dashboard`のメニュー分析ページに反映済み（`menuCatalog.ts`/`menuSales.ts`）。
+
+| 対象日 | 受領日 | Grand Amount（POS集計） | 同日キャッシュブックTotal Sale | 差異 |
+|---|---|---|---|---|
+| 2026-08-19 | 2026-08-19 | 360,175 | 427,550 | △67,375 |
+| 2026-08-20 | 2026-08-21 | 763,485 | 926,551 | △163,066 |
+
+**一郎メモ**: 2日分ともPOS集計がキャッシュブックのTotal Saleを下回る。KOT・スタッフ伝票・値引き等の扱いの違い、集計対象範囲（Dine In以外を含むか等）の違いが要因と推測されるが未確定。件数が積み上がってから傾向を見る。
+
+**2026-08-20分TOP10（定番品＝ロティ・飲料・お茶・ビュッフェ自動計上を除く、個数ベース）**:
+1. Mint Raita（Salads & Raita）×45
+2. Chicken Fried Rice（Rice）×36
+3. Fresh Salad（Salads & Raita）×30
+4. Chicken Manchurian（Chinese Cuisine）×21
+5. Chicken Karahi（Karahi & Handi）×19
+6. Finger Fish（Seafood Specialities）×18
+7. Chicken Reshmi Kebab（Pakistani BBQ & Kebab）×13
+8. Ice Cream（Desserts）×13
+9. Russian Salad（Salads & Raita）×12
+10. Chicken Madrasi Handi（Karahi & Handi）×11
+
+**ビュッフェの規模感**: 2026-08-20はビュッフェ115食（253,000PKR）でPOS集計の約33%を占める。定番品同様、個数ランキングからは除外して集計（自動計上のため）。
+
+タスク進捗: `tasks.md`の「POS品目別・時間帯別の注文データ分析基盤の整備」「人気メニューTOP10ランキングの作成」に反映。
 
 ## 1-13. Multan現地滞在での検討事項（2026-08-18 奏画さん現地訪問・Bassitマネージャーとの会話）
 

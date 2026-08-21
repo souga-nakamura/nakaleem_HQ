@@ -32,8 +32,8 @@
 
 ### Multan現地滞在での検討事項（2026-08-18 奏画さんリスト・一郎が分類）
 
-- [ ] **POS品目別・時間帯別の注文データ分析基盤の整備** — P1 / 担当:奏画+一郎 / 期限:**ASAP**（2026-08-19確定） / メモ:"Data breakdown of who orders what and when"。既存の「客単価・客数はPOS品目データ待ち」継続課題と直結。TOP10ランキング・売上への施策効果測定（下記タスク）の前提となるため優先度高。詳細 `restaurant/zanzibar.md` 1-13節。
-- [ ] **人気メニューTOP10ランキングの作成** — P2 / 担当:一郎 / 期限:**POSデータ分析基盤（上記）完了後すぐ**（2026-08-19確定） / メモ:"Top 10 ranking"。詳細 `restaurant/zanzibar.md` 1-13節。
+- [~] **POS品目別・時間帯別の注文データ分析基盤の整備** — P1 / 担当:奏画+一郎 / 期限:**ASAP**（2026-08-19確定） / メモ:"Data breakdown of who orders what and when"。**2026-08-21進捗**: 8/19・8/20分のPOS「Menu Wise Sale Summary」を受領・ダッシュボード(`Product001_Zanzibar-dashboard`メニュー分析ページ)へ反映済み。基盤は稼働開始、継続的にデータを蓄積していくフェーズへ移行。時間帯別データは未受領（品目別のみ）、継続課題。詳細 `restaurant/zanzibar.md` 1-14節。
+- [x] **人気メニューTOP10ランキングの作成** — 完了(2026-08-21・初版) / 担当:一郎 / メモ:"Top 10 ranking"。8/20分POSデータでTOP10算出済み（1位Mint Raita×45、2位Chicken Fried Rice×36等）。データ蓄積とともに継続更新（単日ではなく期間集計への移行を検討）。詳細 `restaurant/zanzibar.md` 1-14節。
 - [ ] **CCTV遠隔アクセスの検討** — P3 / 担当:奏画 / 期限:未定（2026-08-19確認・現状維持） / メモ:"CCTV access"。セキュリティ・オペレーション管理目的、新規論点。詳細 `restaurant/zanzibar.md` 1-13節。
 - [ ] **年間イベントスケジュールの整備** — P3 / 担当:Furva+一郎 / 期限:未定（2026-08-19確認・現状維持） / メモ:"Annual schedule of events"。稼働（宴会/団体需要）向上レバーと関連。詳細 `restaurant/zanzibar.md` 1-13節。
 - [ ] **法人向けランチ/ディナー需要の可能性検討** — P3 / 担当:奏画 / 期限:未定（2026-08-19確認・現状維持） / メモ:"Corporate lunch dinner possibility check"。新規事業機会として検討。詳細 `restaurant/zanzibar.md` 1-13節。
