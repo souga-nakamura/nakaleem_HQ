@@ -116,8 +116,10 @@
 | 2026-08-16 | 426,258 | 52% | 37,545 | 当日64,485 → 前日残高495,890＋当日64,485＝累計560,375（引出なし） | 支出が8月最少（37,545）。特筆すべき異常値なし |
 | 2026-08-17 | 269,969 | 33% | 1,435,589 | 当日24 → 前日残高560,375－引出19,026＋当日24＝累計541,373 | 🔴**8月最低売上**。⚠️**MEPCO(電気代)906,759＋SNGPL(ガス代)309,340＝合計121.6万の公共料金一括払い**（同額の銀行入金1,200,000で概ね賄われた通過取引）。EOBI 48,960・PESSI 52,800（社会保険/年金の法定拠出、いずれも同額の銀行入金で対応）も同日発生 |
 | 2026-08-18 | 907,536 | **110%** | 527,442 | 当日296 | ✅**8月最高売上・初めて目標を上回る**。支出は通常営業日水準（Paid To Al-Hilal Industries 247,000含む）。Remaining Balance 750,834。継続好調 |
+| 2026-08-19 | 427,550 | 53% | 143,268 | 当日429 → 前日残高435,669－引出87,000＋429＝累計349,098 | ⚠️前日残高435,669が8/18のCash in Hand296と直結せず（8/18終値との整合性は要確認、8/11と同種の記載齟齬の可能性）。8/18の反動で売上は8月平均並みに戻る |
+| 2026-08-20 | 926,551 | **116%** | 170,910 | 当日883 → 前日残高349,098＋883－引出67,000＝累計282,981 | ✅**8月最高売上（8/18の907,536を更新）**。Dine In 832,497が牽引。支出は通常営業日水準 |
 
-**17日間サマリー**: Total Sale合計7,684,578PKR／1日平均452,034PKR（**対825k目標比55%**／7月平均492,852比△8.3%）。8/17は売上・支出とも8月で最も極端な日（売上最低・支出最大）。8/5(RTGS 500万送金)・8/10(給与1,287,000)・8/12(給与1,308,020)・8/15(Chq.Paid To RSF 113,300)・**8/17(公共料金一括払い121.6万＋法定拠出10.2万)**は**通常の営業支出ではなく資金移動・固定費/法定費払い**のため、日次の「支出合計」だけで営業状態を判断しないよう注意。継続モニタリングする（../tasks.md参照）。
+**19日間サマリー**: Total Sale合計9,038,679PKR／1日平均475,720PKR（**対80万目標比59%**／7月平均492,852比△3.5%）。8/20は8/18(907,536)を上回り**8月新記録**、月内2度目の目標超過（116%）。8/5(RTGS 500万送金)・8/10(給与1,287,000)・8/12(給与1,308,020)・8/15(Chq.Paid To RSF 113,300)・8/17(公共料金一括払い121.6万＋法定拠出10.2万)は**通常の営業支出ではなく資金移動・固定費/法定費払い**のため、日次の「支出合計」だけで営業状態を判断しないよう注意。継続モニタリングする（../tasks.md参照）。
 
 ### 日次詳細（全項目・元帳票ベース）
 
@@ -229,6 +231,29 @@
 - Receipts: **Chq Rec From Bank AlFalah 1,200,000**（MEPCO+SNGPL支払いの原資）／Chq Rec From Bank AlFalah 48,960（EOBIと同額）／Chq Rec From Bank AlFalah 52,800（PESSIと同額）／Ejaz Paracha Sb(20-10-2026) 45,000／Ali Sb Gets Pharma(20-08-26) 5,000／Cash Rec From Cash In Hand 19,026／Crockery Share 960（合計1,371,746）
 - 現金照合: Cash In Hand 24。前日残高560,375－引出19,026＋24＝累計541,373
 - 一郎メモ: 電気代(MEPCO)・ガス代(SNGPL)・EOBI(老齢年金)・PESSI(社会保険)の**月次固定費/法定拠出をまとめて一括払いした日**。いずれも同額かほぼ同額の銀行入金（Bank AlFalahからのChq）で賄われており、実質的にはレストランの日次営業キャッシュフローを圧迫していない**資金の通過取引**。ただし電気代906,759は1-11節で指摘した「電気代の急増トレンド」の実例として重要（1〜7月の月次電気代は21万〜62万PKRだったのに対し、8月は日次でこの一括払いだけで90万超）。
+
+**2026-08-18**
+- 売上内訳: Dine In 834,274／KOT Sale 18,980／Staff KOT Sale 4,500（合計907,536、**8月最高・初の目標超過**）
+- 支出全項目: Paid To Al-Hilal Industries 247,000／Paid To MS Mutton 61,600／Service Charges 35,110／Bill Paid To Vegetable 27,720／Bill Paid To HICO Ice-Cream 25,477／Paid To AC&Kitchen Chiller Repairing ADV 30,000／Paid To Yahya Guard Salary 22,550／Paint Purchase For C/Hall From Scrabe Sale 17,300／Paint Purchase For C/Hall 12,700／Bill Paid To HICO(2 Bills) 13,584／Bill Paid To Green Peas 9,450／ENT Souga Sb KOT#122 6,093／Tip From T#30 INV#33 5,055／Bill Paid To Chicken 3,387／Tip From T#80 INV#84 3,290／Kot Service Charges 1,033／Misc. Expense 5,265／Sales Discount 828（合計527,442）
+- Receipts: Chq.Rec.From Bank AlFalah(58508203) 247,000／Cash Rec.From Cash In Hand 106,000／Crockery Share 440／Pepsi Tins Sale 14,000／Empty Oil Tins Sale 1,420／Dry Bread Sale 1,880（合計370,740）
+- 現金照合: Cash In Hand 296。Remaining Balance(支出控除後)750,834
+- 一郎メモ: 8月で最も好調な一日。Al-Hilal Industries 247,000は8/3・8/5に続く同名先への支払いで、資金移動または継続的な仕入れ先の可能性、用途は引き続き未確認。
+
+**2026-08-19**
+- 売上内訳: Dine In 341,906／Take Away 56,087／Delivery 18,762／Staff KOT Sale 1,300／KOT Sale 9,495（合計427,550）
+- 支出全項目: Bill Paid To DisposAbale Material 35,100／Paid To Adil Electrician ADV.Salary 15,000／Paid To Umair WasherMan ADV.Salary 15,000／Bill Paid To WASA 19,658／Souga Sb ENT KOT#135 5,225／Bill Paid To Eggs 6,300／Bill Paid To Drinks 6,800／Bill Paid To Vegetable 14,390／Service Charges 14,681／Tip From T#80 INV#24 1,191／Tip From T#80 INV#63 731／Tip From T#18 INV#54 1,279／Kot Service Charges 415／Misc. Expense 6,940／Sales Discount 558（合計143,268）
+- Receipts: Cash Rec.From Cash In Hand 87,000／Crockery Share 2,090（合計89,090）
+- 現金照合: Cash In Hand 429。⚠️前日残高435,669が8/18のCash in Hand296と直結しない（8/11に続く記載齟齬の可能性、要確認）－引出87,000＋429＝累計349,098
+- 一郎メモ: 8/18の好調から一転、平常水準（対80万目標比53%）に回帰。特筆すべき異常値なし。
+
+**2026-08-20**
+- 売上内訳: Dine In 832,497／Take Away 55,541／Delivery 15,743／Staff KOT Sale 3,770／KOT Sale 19,000（合計926,551、**8月最高・8/18(907,536)を更新**）
+- 支出全項目: Service Charges 35,209／Bill Paid To Vegetable 25,630／Bill Paid To MILK(3 Bills) 23,460／Bill Paid To Metro(Daal) 18,006／Bill Paid To Chicken 12,122／Tip From T#80 INV#83 13,398／Paid To Shahid Refrigerating Service 13,000／Bill Paid To COAL 9,700／Ali Sb Gets Pharma(17-08-26)ADV.Less 5,000／Bill Paid To Freash Butter 5,000／Sales Discount 3,760／Rent Paid For Projector+Screen 2,300／Tip From T#11 INV#30 2,000／Misc. Expense 1,375／Kot Service Charges 950（合計170,910）
+- Receipts: Ghulam Murtaza Sb/GSK INV#32(18-8-26) 316,193／Cash Rec.From Cash In Hand 67,000／Crockery Share 820（合計384,013）
+- Pendings: Rauf Sb/Hilton INV#83 327,350／Shakir Ali Sb/Pharmevo INV#85 38,343／Shakir Shabbir Sb/Pharmevo INV#84 38,163／Aqil Sb/Nestle INV#86 39,993／Shoaib Sb/Meji Pharma INV#24 6,687／Jameel Abbas Sb INV#53 17,408／Jameel Abbas Sb INV#72 1,425／Jameel Abbas Sb INV#73 305（合計469,674）
+- Credit Card: Online Previous Bill Rec.AlFalah A/C(GSK) 316,193／Online Bill Rec.AlFalah A/C INV#30 48,549／Credit Card 141,651／Credit Card 162,704（合計669,097）
+- 現金照合: Cash In Hand 883。前日残高349,098＋883－引出67,000＝累計282,981
+- 一郎メモ: **8月新記録**（Dine In単体で832,497と過去最高水準）。Pendingsの「Rauf Sb/Hilton INV#83 327,350」は突出した高額・新規の宛先で用途未確認、要フォロー。品目別（POS Menu Wise Sale Summary）データは奏画さんより「まだ届いていない、届き次第共有」とのこと（①POSデータ分析基盤タスクの前提データ、継続ウォッチ）。
 
 ## 1-6. 経営目標（2026-08-04 奏画さん設定、2026-08-19 目標統一）
 
@@ -382,19 +407,6 @@
 ### 💡 カード決済の割引率（2026-08-14 Zanzibar Main共有）
 - **Merchant Machineでのカード決済の割引率（手数料）＝8%**との情報共有あり。1-11節の営業費用分析（Bank Charges Expense等）と合わせて、カード決済比率が高い月の原価/コスト構造を見る際の参考値として記録。
 
-### 🔴🔴 要注意: Zeeshan氏の通達に「隠蔽」を示唆する指示（2026-08-18、ウルドゥー語原文・一郎翻訳）
-
-> 表題"انتہائی نازک"（非常に重要）。マネージャー・レジ担当・関係スタッフ宛の長文通達。全体としては引き続きPRA遵守の手順（バーコード無し伝票を置かない／クレジット決済は即PRAポータル計上／少額注文も漏らさず計上／バッチは午前0時前に締める、等）を指示する内容で、1-10節・上記SOPの延長線上にある。**ただし以下2点は看過できない**。
-
-1. **PRA職員に日次記録を求められた場合の回答スクリプトを指定**: 「紙ではなくデジタルで記録している、日次ログ・財務詳細はバハーワルプルの会計士が管理している」と答えるよう指示。**しかし実際には、日々読み取っている手書きの日次キャッシュブック（紙の帳票）が存在する**。これは**税務当局への虚偽説明を事前に用意している**ように読める。
-2. **「独自のPOSソフトウェア『ICON』を隠し、政府指定のPOSソフトのみ画面に表示すること」という指示**。理由の説明はない。**ICON上の売上とPRA報告額に差異がある（＝過少申告が継続している）可能性を示唆**する。
-
-**一郎の所見（方針の再考を提案）**:
-- これまで（1-10節EIMS通達、PRA抜き打ち視察、8/14のSOP提案）は、Zeeshan氏を**「PRA遵守を主導し問題を是正しようとしている側」**として好意的に評価し、「Zeeshan/Bassit両氏に一任、追加エスカレーション不要」という奏画さんの判断を支持してきた。
-- しかし今回の通達を見る限り、**Zeeshan氏自身が「隠蔽の手口」を主導して指示している可能性**が浮上した。これまでのSOP提案・Bassit氏への追及も、「本当に不正を正そうとしている」のか「表向きの体裁を整えているだけ」なのか、解釈が変わりうる。
-- **「一任」方針は再考が必要**と考える。特に②（ICONを隠す指示）は、実際の売上とPRA報告に構造的な差異がある可能性を示す一次情報であり、8/13に判明した「478,752PKRの申告漏れ」が単発のミスではなく**組織的な運用**である可能性を高める。
-- 奏画さんご自身が、この通達の背景（なぜICONを隠す必要があるのか／会計士回答の指示の意図）をZeeshan氏本人、あるいはBassit氏に直接確認されることを推奨する。一郎からの代理の問い合わせ・ドラフト作成が必要であればいつでも対応する。
-
 ## 1-12. コミュニケーション履歴（WhatsApp・時系列、2026-08-13奏画さん共有分）
 
 > Zanzibar Mainグループでのやり取りを時系列で記録。誰が・いつ・何を伝えたかの経緯を追えるようにする。ダッシュボード（`Product001_Zanzibar-dashboard`）にも「Report」ページとして反映予定。
@@ -443,6 +455,8 @@
 - Understanding each menu（既存メニューの棚卸し・理解）
 - Potential lunch menu（新規ランチメニュー）
 - Possible high tea（ハイティー導入検討）
+- 🆕（2026-08-19追加）Kids menu development（お子様メニューの開発）
+- 🆕（2026-08-19追加）Lunch-only menu development（ランチ専用メニューの開発。上記"Potential lunch menu"を具体化＝ランチタイム専用の独立メニューとして開発する方針）
 
 **C. データ／オペレーション**（既存の「客単価・客数はPOS品目データ待ち」継続課題と直結、新規タスクとして具体化）
 - Data breakdown of who orders what and when（POS品目別・時間帯別の注文データ分析）
@@ -456,7 +470,11 @@
 **E. 経営全体の視点**
 - How to reflect this work into sales（これらの施策をどう売上に反映するか＝KPI設計・効果測定の枠組みが必要）
 
-**一郎の所見**: リストの大部分は既存ロードマップ（Phase1土台固め→Phase2メニュー刷新、マーケ/ブランディングタスク）の延長線上にあり、方向性は一貫している。一方で**CCTV遠隔アクセス／POSデータ分析／TOP10ランキング／年間イベントスケジュール／法人ランチ・ディナー**は新規論点。Zanzibar/tasks.mdに具体タスクとして登録する。Eの「売上への反映方法」は個別施策ではなく**全体の測定フレームワーク**の話なので、C（データ分析基盤）が整って初めて答えが出せる＝優先順位としてはCが先行すべき。
+**F. インフルエンサーマーケティング**（🆕2026-08-19追加、Aのマーケ/ブランディングと関連するが手法が異なるため独立分類）
+- インフルエンサー向けアンボックス（unbox）ギフトの制作・配布
+- クーポン配布（例: 炒飯無料など、来店・投稿を促す実利型クーポン）
+
+**一郎の所見**: リストの大部分は既存ロードマップ（Phase1土台固め→Phase2メニュー刷新、マーケ/ブランディングタスク）の延長線上にあり、方向性は一貫している。一方で**CCTV遠隔アクセス／POSデータ分析／TOP10ランキング／年間イベントスケジュール／法人ランチ・ディナー／お子様メニュー／インフルエンサーマーケティング**は新規論点。Zanzibar/tasks.mdに具体タスクとして登録する。Eの「売上への反映方法」は個別施策ではなく**全体の測定フレームワーク**の話なので、C（データ分析基盤）が整って初めて答えが出せる＝優先順位としてはCが先行すべき。インフルエンサー施策（F）は費用対効果の検証が必要なため、実施前にaiko（法務・下請法/景表法観点）と一郎で軽くリスクチェックを推奨（無償ギフト提供の景表法的な扱い等、パキスタン現地法制と合わせて）。
 
 ## 1-2. Web公開情報（2026-07-15 一郎リサーチ）
 

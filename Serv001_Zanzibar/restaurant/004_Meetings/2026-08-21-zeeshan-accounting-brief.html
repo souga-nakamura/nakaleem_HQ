@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Zanzibar Ledger Brief</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@600;700&family=Public+Sans:wght@400;500;600;700&display=swap');
+
+  * { box-sizing: border-box; }
+
+  :root {
+    --paper: #ffffff;
+    --ink: #1f1b16;
+    --ink-soft: #55503f;
+    --rule: #e2ddcf;
+    --accent: #8a5a1e;
+    --accent-bg: #f7efdf;
+    --priority: #2b5d53;
+    --priority-bg: #ecf3f0;
+  }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Public Sans", -apple-system, "Hiragino Sans", "Noto Sans JP", sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .sheet { max-width: 42rem; margin: 0 auto; padding: 2.5rem 1.75rem 5rem; }
+
+  .toolbar { display: flex; justify-content: flex-end; margin-bottom: 1rem; }
+  .toolbar button {
+    font: inherit;
+    font-size: 0.9rem;
+    background: var(--accent-bg);
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+  }
+  .toolbar button:hover { background: var(--accent); color: #fff; }
+
+  header.brief-head { border-bottom: 3px solid var(--ink); padding-bottom: 1.5rem; margin-bottom: 1.75rem; }
+
+  h1 {
+    font-family: "Source Serif 4", Georgia, serif;
+    font-weight: 700;
+    font-size: 2rem;
+    line-height: 1.25;
+    margin: 0 0 0.5rem;
+  }
+  h1 .en { display: block; font-size: 1.1rem; font-weight: 600; color: var(--ink-soft); margin-top: 0.3rem; }
+
+  .subtitle { font-size: 1.05rem; color: var(--ink-soft); margin: 0.5rem 0 1.5rem; }
+  .subtitle .en { display: block; margin-top: 0.35rem; }
+
+  .meta-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+    gap: 1rem 1.5rem;
+    font-size: 0.95rem;
+    background: var(--accent-bg);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+  }
+  .meta-grid dt { color: var(--ink-soft); font-weight: 600; margin-bottom: 0.15rem; }
+  .meta-grid dd { margin: 0; }
+
+  .priority-banner {
+    margin: 2rem 0 0;
+    padding: 1rem 1.25rem;
+    background: var(--priority-bg);
+    border-left: 4px solid var(--priority);
+    border-radius: 0 8px 8px 0;
+    font-size: 1rem;
+  }
+  .priority-banner strong { color: var(--priority); }
+  .priority-banner .en { display: block; margin-top: 0.5rem; color: var(--ink-soft); }
+
+  .glossary {
+    margin: 1.5rem 0 0;
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+  }
+  .glossary-title { font-weight: 700; font-size: 0.95rem; margin: 0 0 0.7rem; }
+  .glossary-title .en { display: block; font-weight: 500; font-size: 0.82rem; color: var(--ink-soft); margin-top: 0.1rem; }
+  .glossary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 0.6rem 1.5rem; margin: 0; }
+  .glossary-grid dt { font-weight: 700; font-size: 0.92rem; }
+  .glossary-grid dd { margin: 0.1rem 0 0; font-size: 0.9rem; color: var(--ink-soft); }
+  .glossary-grid dd .en { display: block; font-size: 0.85rem; margin-top: 0.05rem; }
+
+  section.pillar { margin-top: 2.75rem; }
+
+  .pillar-head { border-bottom: 2px solid var(--ink); padding-bottom: 0.7rem; margin-bottom: 0.4rem; }
+  .pillar-num {
+    display: inline-block;
+    font-family: "Source Serif 4", serif;
+    font-weight: 700;
+    color: var(--accent);
+    margin-right: 0.4rem;
+  }
+  .pillar-title { font-size: 1.25rem; font-weight: 700; margin: 0; }
+  .pillar-title .en { display: block; font-size: 0.88rem; font-weight: 500; color: var(--ink-soft); margin-top: 0.15rem; }
+  .pillar-note { font-size: 0.88rem; color: var(--ink-soft); margin: 0.6rem 0 1.1rem; }
+  .pillar-note .en { display: block; margin-top: 0.2rem; }
+
+  ol.q-list { list-style: none; margin: 0; padding: 0; }
+
+  .q-item { padding: 1.15rem 0; border-bottom: 1px solid var(--rule); }
+  .q-item:first-child { padding-top: 0; }
+
+  .q-title-row { display: flex; align-items: flex-start; gap: 0.7rem; }
+  .q-check { width: 1.2rem; height: 1.2rem; margin-top: 0.25rem; flex-shrink: 0; accent-color: var(--accent); cursor: pointer; }
+  .q-num { color: var(--accent); font-weight: 700; margin-right: 0.35rem; }
+  .q-title { font-weight: 700; font-size: 1.02rem; }
+  .q-title .en { display: block; font-size: 0.9rem; font-weight: 500; color: var(--ink-soft); margin-top: 0.2rem; }
+
+  .q-detail { font-size: 0.94rem; color: var(--ink-soft); margin: 0.5rem 0 0 1.9rem; }
+  .q-detail .en { display: block; margin-top: 0.3rem; }
+
+  .note-line { margin: 0.85rem 0 0 1.9rem; height: 1.4rem; border-bottom: 1px solid var(--rule); }
+
+  footer.brief-foot { margin-top: 3rem; font-size: 0.85rem; color: #9a917a; display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+
+  @media (max-width: 26rem) {
+    .q-detail, .note-line { margin-left: 0; }
+  }
+
+  @media print {
+    .toolbar { display: none; }
+    .q-item { break-inside: avoid; }
+    section.pillar { break-inside: avoid-page; }
+  }
+</style>
+</head>
+<body>
+
+<div class="sheet">
+  <div class="toolbar">
+    <button type="button" onclick="window.print()">印刷 / Print</button>
+  </div>
+
+  <header class="brief-head">
+    <h1>
+      Zanzibar 会計ヒアリング項目
+      <span class="en">Zanzibar Ledger Brief</span>
+    </h1>
+    <p class="subtitle">
+      会計処理の仕組み・コストの構造・財務体系の改善について、会計責任者に確認したい15項目
+      <span class="en">15 questions for the accounting lead — how the accounting works, where the money goes, and how to improve the financial structure</span>
+    </p>
+    <dl class="meta-grid">
+      <div><dt>日付 / Date</dt><dd>2026-08-21</dd></div>
+      <div><dt>面談相手 / With</dt><dd>Zeeshan（会計責任者 / Accounting Lead）</dd></div>
+      <div><dt>店舗 / Restaurant</dt><dd>Zanzibar — Multan</dd></div>
+      <div><dt>作成 / Prepared by</dt><dd>一郎 / Ichiro</dd></div>
+    </dl>
+  </header>
+
+  <p class="priority-banner">
+    <strong>知りたいのは「仕組み」と「構造」。</strong>個別の回収作業や日々の実務はZeeshanさんの仕事。私たちが理解しておきたいのは、会計がどう回っていて、コストがどこに行っていて、財務をどう良くしていけるか。
+    <span class="en"><strong>The goal is understanding the system, not the day-to-day execution.</strong> Collections and daily operations are Zeeshan's job to run. What we want to understand is how the accounting works, where the money goes, and how to improve the financial structure.</span>
+  </p>
+
+  <div class="glossary">
+    <p class="glossary-title">用語（本紙で使う略語）<span class="en">Terms used in this brief</span></p>
+    <dl class="glossary-grid">
+      <div>
+        <dt>AR（売掛金）</dt>
+        <dd>まだ回収できていない売上代金<span class="en">Accounts Receivable — sales already made but not yet collected in cash</span></dd>
+      </div>
+      <div>
+        <dt>Credit Sale（掛売り）</dt>
+        <dd>代金を後払いにする販売方式<span class="en">Sales where payment is collected later, not on the spot</span></dd>
+      </div>
+      <div>
+        <dt>COGS（原価）</dt>
+        <dd>食材費など、売上に直接かかったコスト<span class="en">Cost of Goods Sold — direct costs like ingredients</span></dd>
+      </div>
+      <div>
+        <dt>Opex（営業経費）</dt>
+        <dd>家賃・人件費・水道光熱費など、原価以外の運営コスト<span class="en">Operating Expenses — rent, payroll, utilities, and other running costs</span></dd>
+      </div>
+      <div>
+        <dt>POS</dt>
+        <dd>レジ・注文管理システム<span class="en">Point of Sale — the register / ordering system</span></dd>
+      </div>
+      <div>
+        <dt>PKR</dt>
+        <dd>パキスタンルピー（現地通貨）<span class="en">Pakistani Rupee, the local currency</span></dd>
+      </div>
+    </dl>
+  </div>
+
+  <section class="pillar">
+    <div class="pillar-head">
+      <h2 class="pillar-title"><span class="pillar-num">1</span>会計処理の仕組み<span class="en">How the Accounting Works</span></h2>
+    </div>
+    <p class="pillar-note">
+      お金がどう流れ、誰の判断で動き、どこで記録されているか。全体像を掴む。
+      <span class="en">How money moves, who decides, and where it gets recorded — the overall picture.</span>
+    </p>
+    <ol class="q-list">
+      <li class="q-item">
+        <div class="q-title-row">
+          <input class="q-check" type="checkbox" aria-label="asked" />
+          <span class="q-title">
+            <span class="q-num">01.</span>日次キャッシュブック→月次会計への集約フロー
+            <span class="en">How the daily cashbook rolls up into monthly accounts</span>
+          </span>
+        </div>
+        <p class="q-detail">
+          POS（レジ・注文管理システム）との連携有無も含め、今のデータの流れを理解しておきたい。
+          <span class="en">Including whether/how it connects to the POS — want to understand the current data flow.</span>
+        </p>
+        <div class="note-line"></div>
+      </li>
+      <li class="q-item">
+        <div class="q-title-row">
+          <input class="q-check" type="checkbox" aria-label="asked" />
+          <span class="q-title">
+            <span class="q-num">02.</span>会計体制そのもの
+            <span class="en">The accounting setup itself</span>
+          </span>
+        </div>
+        <p class="q-detail">
+          記帳・会計ソフトは何を使っているか、決算はいつ確定するか、外部監査は入っているか。Zeeshanさん自身はグループ全体を見ているのか、Zanzibar専任か。
+          <span class="en">What bookkeeping/accounting software is used, when the books close each period, whether there's external audit, and whether Zeeshan covers the whole group or just Zanzibar.</span>
+        </p>
+        <div class="note-line"></div>
+      </li>
+      <li class="q-item">
+        <div class="q-title-row">
+          <input class="q-check" type="checkbox" aria-label="asked" />
+          <span class="q-title">
+            <span class="q-num">03.</span>支払いの承認フロー・決裁権限
+            <span class="en">Payment approval flow &amp; decision authority</span>
+          </span>
+        </div>
+        <p class="q-detail">
+          日々の支払いは誰の承認で実行されるか。銀行口座はいくつあり、誰が送金の判断をしているか。
+          <span class="en">Who approves and executes day-to-day payments, how many bank accounts exist, and who decides on transfers.</span>
+        </p>
+        <div class="note-line"></div>
+      </li>
+      <li class="q-item">
+        <div class="q-title-row">
+          <input class="q-check" type="checkbox" aria-label="asked" />
+          <span class="q-title">
+            <span class="q-num">04.</span>税金の支払いの仕組み
+            <span class="en">How taxes are paid</span>
+          </span>
+        </div>
+        <p class="q-detail">
+          GST（消費税）や所得税など、どの税金をどう申告・納付しているか、基本的な流れを理解したい。
+          <span class="en">Want to understand the basics — which taxes (GST, income tax, etc.) are filed and paid, and how.</span>
+        </p>
+        <div class="note-line"></div>
+      </li>
+      <li class="q-item">
+        <div class="q-title-row">
+          <input class="q-check" type="checkbox" aria-label="asked" />
+          <span class="q-title">
+            <span class="q-num">05.</span>今後キャンペーン等を仕掛ける際のコスト計上方法
+            <span class="en">How to book costs for future campaigns / initiatives</span>
+          </span>
+        </div>
+        <p class="q-detail">
+          今後、奏画さん側で販促施策やキャンペーンを実施する際、その費用は誰の予算に・どの科目で計上すべきか、流れを事前に確認しておきたい。
+          <span class="en">When we want to run a promotion or campaign, want to confirm in advance whose budget it comes out of and which account it should be booked under.</span>
+        </p>
+        <div class="note-line"></div>
+      </li>
+    </ol>
+  </section>
+
+  <section class="pillar">
+    <div class="pillar-head">
+      <h2 class="pillar-title"><span class="pillar-num">2</span>コストの構造<span class="en">Where the Money Goes</span></h2>
+    </div>
+    <p class="pillar-note">
+      売上に対して何にいくら使っていて、それはなぜか。
+      <span class="en">What we spend against sales, on what, and why.</span>
+    </p>
+    <ol class="q-list">
+      <li class="q-item">
+        <div class="q-title-row">
+          <input class="q-check" type="checkbox" aria-label="asked" />
+          <span class="q-title">
+            <span class="q-num">06.</span>月次の原価率(COGS)・経費率(Opex)がブレる要因
+            <span class="en">What drives the month-to-month swing in COGS &amp; Opex ratios</span>
+          </span>
+        </div>
+        <p class="q-detail">
+          原価（COGS）と経費（Opex）を合わせた比率が月によって38%〜55%とブレている。会計側で一番実態を把握しているはず。
+          <span class="en">The combined COGS + Opex ratio swings between 38% and 55% month to month — accounting is best placed to explain why.</span>
+        </p>
+        <div class="note-line"></div>
+      </li>
+      <li class="q-item">
+        <div class="q-title-row">
+          <input class="q-check" type="checkbox" aria-label="asked" />
+          <span class="q-title">
+            <span class="q-num">07.</span>メニュー品目・カテゴリごとの原価（COGS）データの有無
+            <span class="en">Whether item/category-level COGS (cost) data exists</span>
+          </span>
+        </div>
+        <p class="q-detail">
+          保持していれば、どのメニューが儲かっているかの分析にそのまま使える。
+          <span class="en">If it exists, it would let us see which menu items are actually profitable.</span>
+        </p>
+        <div class="note-line"></div>
+      </li>
+      <li class="q-item">
+        <div class="q-title-row">
+          <input class="q-check" type="checkbox" aria-label="asked" />
+          <span class="q-title">
+            <span class="q-num">08.</span>人件費の全体構造
+            <span class="en">The overall shape of payroll costs</span>
+          </span>
+        </div>
+        <p class="q-detail">
+          各従業員の給与水準はどのくらいか、誰が昇給・採用・解雇を決めているか。
+          <span class="en">What each employee is paid, and who decides on raises, hiring, and termination.</span>
+        </p>
+        <div class="note-line"></div>
+      </li>
+      <li class="q-item">
+        <div class="q-title-row">
+          <input class="q-check" type="checkbox" aria-label="asked" />
+          <span class="q-title">
+            <span class="q-num">09.</span>家賃の契約条件・更新タイミング
+            <span class="en">Rent terms &amp; renewal timing</span>
+          </span>
+        </div>
+        <p class="q-detail">
+          7月に10%上昇した経緯も含めて確認する。
+          <span class="en">Including the background on July's 10% rent increase.</span>
+        </p>
+        <div class="note-line"></div>
+      </li>
+      <li class="q-item">
+        <div class="q-title-row">
+          <input class="q-check" type="checkbox" aria-label="asked" />
+          <span class="q-title">
+            <span class="q-num">10.</span>「Legal Fee（法務費用）」の中身
+            <span class="en">What the "Legal Fee" costs actually are</span>
+          </span>
+        </div>
+        <p class="q-detail">
+          3月50.8万・5月34.7万・6月48.5万PKRと特定月にまとまって発生している。顧問料・許認可関連・その他何の費用か確認したい。
+          <span class="en">PKR 508K in March, 347K in May, and 485K in June — want to know what these are for (retainer, licensing, something else).</span>
+        </p>
+        <div class="note-line"></div>
+      </li>
+      <li class="q-item">
+        <div class="q-title-row">
+          <input class="q-check" type="checkbox" aria-label="asked" />
+          <span class="q-title">
+            <span class="q-num">11.</span>掛売り（Credit Sale）比率が高いことの財務上の意味
+            <span class="en">What the high share of credit sales means structurally</span>
+          </span>
+        </div>
+        <p class="q-detail">
+          7月の売上内訳でCredit Sale（掛売り）1,042万PKR（総売上の約7割）。この構造は普通なのか、キャッシュフロー上どう影響しているのか理解したい（回収の実務自体はZeeshanさんに任せる）。
+          <span class="en">July's credit sales totaled PKR 10.42M — roughly 70% of total sales. Want to understand whether this is normal for the business and what it means for cash flow (the actual collection work stays with Zeeshan).</span>
+        </p>
+        <div class="note-line"></div>
+      </li>
+    </ol>
+  </section>
+
+  <section class="pillar">
+    <div class="pillar-head">
+      <h2 class="pillar-title"><span class="pillar-num">3</span>財務体系をどう良くしていくか<span class="en">Improving the Financial Structure</span></h2>
+    </div>
+    <p class="pillar-note">
+      今の仕組みを前提に、これからどう良くしていけるか。
+      <span class="en">Given how things work today, how we improve from here.</span>
+    </p>
+    <ol class="q-list">
+      <li class="q-item">
+        <div class="q-title-row">
+          <input class="q-check" type="checkbox" aria-label="asked" />
+          <span class="q-title">
+            <span class="q-num">12.</span>AR（売掛金）の規模は財務上健全か
+            <span class="en">Is the current AR (receivables) balance financially healthy</span>
+          </span>
+        </div>
+        <p class="q-detail">
+          7月時点でAR（売掛金）768万PKR、銀行預金1,012万PKRに対しかなり大きい。この規模が事業として健全な水準か、圧縮すべき構造なのかを理解したい（回収そのものはZeeshanさんに任せる）。
+          <span class="en">As of July, AR stood at PKR 7.68M against PKR 10.12M cash at bank — a sizeable balance. Want to understand whether this scale is healthy or should be brought down structurally (the collection itself stays with Zeeshan).</span>
+        </p>
+        <div class="note-line"></div>
+      </li>
+      <li class="q-item">
+        <div class="q-title-row">
+          <input class="q-check" type="checkbox" aria-label="asked" />
+          <span class="q-title">
+            <span class="q-num">13.</span>月次レポートを奏画さん宛に定期的に共有してもらえるか
+            <span class="en">Could Zeeshan share a monthly report with Souga directly, going forward</span>
+          </span>
+        </div>
+        <p class="q-detail">
+          都度こちらから依頼するのではなく、決まったタイミングで自動的に届く形にできると助かる。
+          <span class="en">Rather than asking each time, it would help to have this arrive automatically on a fixed schedule.</span>
+        </p>
+        <div class="note-line"></div>
+      </li>
+      <li class="q-item">
+        <div class="q-title-row">
+          <input class="q-check" type="checkbox" aria-label="asked" />
+          <span class="q-title">
+            <span class="q-num">14.</span>会計・POSデータへの閲覧アクセスをもらえるか
+            <span class="en">Could Souga get view access to the accounting / POS data</span>
+          </span>
+        </div>
+        <p class="q-detail">
+          写真の送付を待つのではなく、必要な時にこちらから直接確認できる形にできないか。
+          <span class="en">Instead of waiting for photos to be sent, could there be a way to check the data directly whenever needed.</span>
+        </p>
+        <div class="note-line"></div>
+      </li>
+      <li class="q-item">
+        <div class="q-title-row">
+          <input class="q-check" type="checkbox" aria-label="asked" />
+          <span class="q-title">
+            <span class="q-num">15.</span>POSの品目別売上データを定期的に共有してもらえるか
+            <span class="en">Can we get regular item-level (menu-wise) POS sales data</span>
+          </span>
+        </div>
+        <p class="q-detail">
+          「Menu Wise Sale Summary」等、品目ごとの販売データ。人気メニューの分析・客単価の把握に必要。頻度・フォーマットも含めて確認したい。
+          <span class="en">Something like a "Menu Wise Sale Summary" — item-level sales data. Needed to analyze popular menu items and understand spend per customer. Ask about frequency and format too.</span>
+        </p>
+        <div class="note-line"></div>
+      </li>
+    </ol>
+  </section>
+
+  <footer class="brief-foot">
+    <span>Nakaleem Industries — 社内限定 / Internal use only</span>
+    <span>Ref: Serv001_Zanzibar / restaurant / zanzibar.md</span>
+  </footer>
+</div>
+
+</body>
+</html>
