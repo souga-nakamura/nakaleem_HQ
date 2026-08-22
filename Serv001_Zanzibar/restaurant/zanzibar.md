@@ -456,8 +456,10 @@
 |---|---|---|---|---|
 | 2026-08-19 | 2026-08-19 | 360,175 | 427,550 | △67,375 |
 | 2026-08-20 | 2026-08-21 | 763,485 | 926,551 | △163,066 |
+| 2026-08-21 | 2026-08-22 | 267,060（うち265,860分を反映、要確認1,200） | 310,057 | △42,997 |
 
-**一郎メモ**: 2日分ともPOS集計がキャッシュブックのTotal Saleを下回る。KOT・スタッフ伝票・値引き等の扱いの違い、集計対象範囲（Dine In以外を含むか等）の違いが要因と推測されるが未確定。件数が積み上がってから傾向を見る。
+**一郎メモ**: 3日分ともPOS集計がキャッシュブックのTotal Saleを下回る。KOT・スタッフ伝票・値引き等の扱いの違い、集計対象範囲（Dine In以外を含むか等）の違いが要因と推測されるが未確定。件数が積み上がってから傾向を見る。
+**⚠️2026-08-21分は転記時に2品目（ID615 Penne Pasta・ID651 Tandoori Paratha）の数量が判読困難で、印字Grand Amount(267,060)との間に1,200PKR（0.45%）の差が残っている。ダッシュボードには判読できた94品目分（265,860PKR相当）のみ反映済み。元帳票で数量を確認でき次第、追加反映する。**
 
 **2026-08-20分TOP10（定番品＝ロティ・飲料・お茶・ビュッフェ自動計上を除く、個数ベース）**:
 1. Mint Raita（Salads & Raita）×45
@@ -470,6 +472,20 @@
 8. Ice Cream（Desserts）×13
 9. Russian Salad（Salads & Raita）×12
 10. Chicken Madrasi Handi（Karahi & Handi）×11
+
+**2026-08-21分TOP10（同条件）**:
+1. Mint Raita（Salads & Raita）×23
+2. Chicken Tikka Piece（Pakistani BBQ & Kebab）×11
+3. Hot & Sour Soup（Soups）×10
+4. Chicken Manchurian（Chinese Cuisine）×9
+5. Chicken Chowmein（Noodles）×9
+6. Ice Cream（Desserts）×9
+7. Chicken Handi（Karahi & Handi）×8
+8. Chicken Madrasi Handi（Karahi & Handi）×7
+9. Chicken Malai Boti（Pakistani BBQ & Kebab）×7
+10. Fresh Salad（Salads & Raita）×6
+
+**一郎メモ**: Mint Raitaが2日連続TOP1。個数ランキングとしては定番の付け合わせ的な立ち位置かもしれず、「人気メニュー」というより「注文頻度が高いサイド」という性質の可能性がある。件数が積み上がったら、サイド類（Raita/Salad）とメイン料理を分けたランキングも検討したい。
 
 **ビュッフェの規模感**: 2026-08-20はビュッフェ115食（253,000PKR）でPOS集計の約33%を占める。定番品同様、個数ランキングからは除外して集計（自動計上のため）。
 
