@@ -38,7 +38,7 @@
 - [ ] **年間イベントスケジュールの整備** — P3 / 担当:Furva+一郎 / 期限:未定（2026-08-19確認・現状維持） / メモ:"Annual schedule of events"。稼働（宴会/団体需要）向上レバーと関連。詳細 `restaurant/zanzibar.md` 1-13節。
 - [ ] **法人向けランチ/ディナー需要の可能性検討** — P3 / 担当:奏画 / 期限:未定（2026-08-19確認・現状維持） / メモ:"Corporate lunch dinner possibility check"。新規事業機会として検討。詳細 `restaurant/zanzibar.md` 1-13節。
 - [ ] **ハイティー導入の検討** — P3 / 担当:Furva+一郎 / 期限:**Phase2メニュー刷新のタイミングと一体**（2026-08-19確定） / メモ:"Possible high tea"。1-7節Phase2メニュー刷新と統合。詳細 `restaurant/zanzibar.md` 1-13節。
-- [ ] **既存メニューの棚卸し・理解** — P2 / 担当:Furva+一郎 / 期限:**1ヶ月以内目安**（2026-08-19確定） / メモ:"Understanding each menu"。ランチメニュー新設・ハイティー検討の前提。詳細 `restaurant/zanzibar.md` 1-13節。
+- [~] **既存メニューの棚卸し・理解** — P2 / 担当:Furva+一郎 / 期限:**1ヶ月以内目安**（2026-08-19確定） / メモ:"Understanding each menu"。**2026-08-22進捗**: 公式紙メニュー7枚を受領、ダッシュボードのメニューカタログ（150品目超）と全面突き合わせ完了。単価・カテゴリ誤り3件訂正、POS未受注の45品目を追加登録し全体像を可視化。ランチメニュー新設・ハイティー検討の前提。詳細 `restaurant/zanzibar.md` 1-13節・1-14節。
 - [ ] **新規ランチメニューの検討** — P2 / 担当:Furva+一郎 / 期限:**既存メニュー棚卸し（上記）完了後**（2026-08-19確定） / メモ:"Potential lunch menu"。1-7節Phase2と統合。詳細 `restaurant/zanzibar.md` 1-13節。
 - [ ] **施策効果の売上への反映方法（測定フレームワーク）** — P2 / 担当:一郎 / 期限:**POSデータ分析基盤（上記）完了後**（2026-08-19確定） / メモ:"How to reflect this work into sales"。個別施策ではなく全体のKPI設計・効果測定の枠組み。詳細 `restaurant/zanzibar.md` 1-13節。
 - [ ] **🆕 お子様メニューの開発** — P2 / 担当:Furva+一郎 / 期限:**既存メニュー棚卸し完了後**（2026-08-19確定） / メモ:"Kids menu development"（2026-08-19奏画さん追加）。既存メニュー棚卸し（上記タスク）と合わせて検討。詳細 `restaurant/zanzibar.md` 1-13節B。
