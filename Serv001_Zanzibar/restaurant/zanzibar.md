@@ -118,8 +118,9 @@
 | 2026-08-18 | 907,536 | **110%** | 527,442 | 当日296 | ✅**8月最高売上・初めて目標を上回る**。支出は通常営業日水準（Paid To Al-Hilal Industries 247,000含む）。Remaining Balance 750,834。継続好調 |
 | 2026-08-19 | 427,550 | 53% | 143,268 | 当日429 → 前日残高435,669－引出87,000＋429＝累計349,098 | ⚠️前日残高435,669が8/18のCash in Hand296と直結せず（8/18終値との整合性は要確認、8/11と同種の記載齟齬の可能性）。8/18の反動で売上は8月平均並みに戻る |
 | 2026-08-20 | 926,551 | **116%** | 170,910 | 当日883 → 前日残高349,098＋883－引出67,000＝累計282,981 | ✅**8月最高売上（8/18の907,536を更新）**。Dine In 832,497が牽引。支出は通常営業日水準 |
+| 2026-08-21 | 310,057 | 39% | 326,078 | 当日4,422 → 前日残高282,981＋4,422＋引出0＝累計287,403 | 🔴8月3番目の低さ。⚠️**Tax Paid To PRA. 215,188**（同額のChq.Rec.From Bank AlFalah215,188と対応、資金移動）。5名分のスタッフ前払い給与（Waqas/Ata/Akmal/Imran/Amir、計61,000）あり |
 
-**19日間サマリー**: Total Sale合計9,038,679PKR／1日平均475,720PKR（**対80万目標比59%**／7月平均492,852比△3.5%）。8/20は8/18(907,536)を上回り**8月新記録**、月内2度目の目標超過（116%）。8/5(RTGS 500万送金)・8/10(給与1,287,000)・8/12(給与1,308,020)・8/15(Chq.Paid To RSF 113,300)・8/17(公共料金一括払い121.6万＋法定拠出10.2万)は**通常の営業支出ではなく資金移動・固定費/法定費払い**のため、日次の「支出合計」だけで営業状態を判断しないよう注意。継続モニタリングする（../tasks.md参照）。
+**21日間サマリー**: Total Sale合計9,348,736PKR／1日平均445,179PKR（**対80万目標比56%**／7月平均492,852比△9.7%）。8/20の新記録（116%）から一転、8/21は8月3番目の低さ（39%）。8/5(RTGS 500万送金)・8/10(給与1,287,000)・8/12(給与1,308,020)・8/15(Chq.Paid To RSF 113,300)・8/17(公共料金一括払い121.6万＋法定拠出10.2万)・8/21(PRA納税215,188)は**通常の営業支出ではなく資金移動・固定費/法定費払い**のため、日次の「支出合計」だけで営業状態を判断しないよう注意。継続モニタリングする（../tasks.md参照）。
 
 ### 日次詳細（全項目・元帳票ベース）
 
@@ -254,6 +255,15 @@
 - Credit Card: Online Previous Bill Rec.AlFalah A/C(GSK) 316,193／Online Bill Rec.AlFalah A/C INV#30 48,549／Credit Card 141,651／Credit Card 162,704（合計669,097）
 - 現金照合: Cash In Hand 883。前日残高349,098＋883－引出67,000＝累計282,981
 - 一郎メモ: **8月新記録**（Dine In単体で832,497と過去最高水準）。Pendingsの「Rauf Sb/Hilton INV#83 327,350」は突出した高額・新規の宛先で用途未確認、要フォロー。品目別（POS Menu Wise Sale Summary）データは2026-08-21に8/20分を受領（詳細1-14節）。
+
+**2026-08-21**
+- 売上内訳: Dine In 260,267／Take Away 26,484／Delivery 15,908／Staff KOT Sale 4,590／KOT Sale 2,808（合計310,057、**8月3番目の低さ**）
+- 支出全項目: 🔴**Tax Paid To PRA. 215,188**／Service Charges 11,473／Bill Paid To Vegetable 15,700／Bill Paid To MILK 8,684／Bill Paid To Chicken 8,852／Misc. Expense 5,181／Paid To Akmal Sb ADV.Salary 20,000／Paid To Amir Pakistani ADV.Salary 25,000／Paid To Ata BarMan ADV.Salary 10,000／Paid To Waqas DishWasher ADV.Salary 5,000／Paid To Imran GarbageMan ADV.Salary 1,000／Sales Discount 0（合計326,078）
+- Receipts: Chq.Rec.From Bank AlFalah(58508205) 215,188／Ghulam Abbas Zaidi Sb/Genetic Pharma KOT#527(23-06-26) 75,114／Aqil Sb/Nestle INV#86(20-8-26) 39,993／Pervaiz Sb(13-9-26) 20,000／Crockery Share 2,300（合計352,595）
+- Pendings: Zeeshan Chinese(Staff) 1,760／Rehan Sb INV#42 1,636（合計3,396）
+- Credit Card: Online Bill Rec From Bank AlFalah(Genetic Pharma) 59,495／W.H.T(Genetic Pharma) 15,619／Credit Card 121,421／Credit Card 89,828／Online Previous Bill Rec.AlFalah A/C(Nestle) 39,993／Online Bill Rec.AlFalah A/C INV#22 2,400（合計328,756）
+- 現金照合: Cash In Hand 4,422。前日残高282,981＋4,422（引出なし）＝累計287,403
+- 一郎メモ: ⚠️**PRAへの納税215,188を日次キャッシュブックで直接処理**（同額のChq.Rec.From Bank AlFalahで資金手当て、資金移動として実質営業キャッシュフローへの影響は限定的）。今回初めて「Tax Paid To PRA」という科目が日次ログに登場、税金支払いの実務フローを示す一次情報として記録（Zeeshan氏面談時の確認項目11と関連）。またスタッフ5名分の前払い給与（Waqas DishWasher/Ata BarMan/Akmal Sb/Imran GarbageMan/Amir Pakistani、計61,000）が発生、個別従業員の職種・給与水準が分かる貴重なデータ（面談項目09と関連）。売上は8月3番目の低さだが、Genetic Pharma・Nestle等の掛売り回収（Receipts側）は順調。
 
 ## 1-6. 経営目標（2026-08-04 奏画さん設定、2026-08-19 目標統一）
 
